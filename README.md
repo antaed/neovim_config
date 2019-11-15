@@ -1,1 +1,3 @@
-#macVim config This is my vim config on **MacOS**
+# macVim Config
+
+This is my vim configuration on **MacOS**
