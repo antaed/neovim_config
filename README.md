@@ -51,7 +51,7 @@ $ git config --global mergetool.diffconflicts.trustExitCode true
 $ git config --global mergetool.keepBackup false
 ```
 
-### Step 4 - Set MacVim preferences
+### Step 5 - Set MacVim preferences
 
 * When MacVim launches: Check for updates
 * Open files from applications: in a new window and set the arglist
