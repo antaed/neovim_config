@@ -33,7 +33,7 @@ $ git clone git@github.com:antaed/macvim_config.git .vim
 $ git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
 $ echo "runtime gvimrc" > .gvimrc
 ```
-* Install one of the font variants from *~/vimfiles/antaed*
+* Install one of the font variants from *~/.vim/antaed*
 
 
 ### Step 3 - Install plugins
