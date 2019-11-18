@@ -1,0 +1,11 @@
+*
+!/antaed
+!/after
+!/colors
+!/plugin
+!/snippets
+!.gitignore
+!README.md
+!coc-settings.json
+!gvimrc
+
