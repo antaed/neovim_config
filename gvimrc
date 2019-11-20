@@ -661,7 +661,7 @@ function SetProject(s) abort
         endfor
     else
         let path = '/Volumes/cbmssoftware/www/'
-        let projects = ["cesaco", "gsc", "idox", "insidetelecom", "iwave", "magnetcenter", "mjp", "neotronix", "reyravos", "thermopan"]
+        let projects = ["cesaco", "gsc", "idox", "insidetelecom", "iwave", "magnetcenter", "mjp", "neotronix", "reyravos", "thermopan", "arhivatorul"]
         let options = ["Choose ERP2 project: ", ""]
         exe ":cd ".path."erp2_core/dev/"
     endif

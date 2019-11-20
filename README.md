@@ -2,7 +2,7 @@
 
 ![screenshot](https://repository-images.githubusercontent.com/221780628/b6f09b00-0940-11ea-9447-f21ae15e3c42)
 
-This repository contains my gVim configuration process for a new MacOS computer, it is based on my own work flow as a web developer (in PHP, JavaScript, HTML, CSS) and it includes:
+This repository contains my MacVim configuration process for a new computer, it is based on my own work flow as a web developer (in PHP, JavaScript, HTML, CSS) and it includes:
 
 * my **gvimrc** file
 * **.vim** directory containing various customization files including my own theme, snippets, syntax highlighting, etc.
