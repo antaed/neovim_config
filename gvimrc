@@ -362,7 +362,9 @@ let g:ctrlp_extensions = ['dir', 'bookmarkdir']
 
 " Use ctrlp with ripgrep
 if executable('rg')
-  let g:ctrlp_user_command = 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"'
+  let g:ctrlp_user_command = {
+    \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
+    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
   let g:ctrlp_use_caching = 0
   let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
