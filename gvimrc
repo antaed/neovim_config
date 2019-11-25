@@ -78,7 +78,6 @@ if (&hls && v:hlsearch)
 endif
 
 " Search highlights off
-nnoremap <silent> <leader><space> :call popup_clear() <bar> :noh<cr>
 nnoremap <silent> <leader><space> :call popup_clear() <bar> :let @/ = expand("<cword>") <bar> :set invhlsearch<cr>
 
 " Remap buffer motion
