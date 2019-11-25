@@ -72,6 +72,10 @@ nmap <leader>sg :source $MYGVIMRC<CR>
 nnoremap <leader>p p`[v`]=
 
 " Copy and paste highlighted word
+macmenu Edit.Copy<Tab>"+y key=<nop>
+vnoremap <D-c> "+y
+macmenu Edit.Paste<Tab>"+gP key=<nop>
+vnoremap <D-v> "+gP
 if (&hls && v:hlsearch)
     nnoremap <D-c> "+yiw
     nnoremap <D-v> ciw<C-r><C-o>+<esc>
