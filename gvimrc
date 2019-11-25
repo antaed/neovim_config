@@ -73,8 +73,8 @@ nnoremap <leader>p p`[v`]=
 
 " Copy and paste highlighted word
 if (&hls && v:hlsearch)
-    nnoremap <C-c> "+yiw
-    nnoremap <C-v> ciw<C-r><C-o>+<esc>
+    nnoremap <D-c> "+yiw
+    nnoremap <D-v> ciw<C-r><C-o>+<esc>
 endif
 
 " Search highlights off
