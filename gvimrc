@@ -659,7 +659,7 @@ function SetProject(s) abort
     if a:s==0
         let path = '/Users/cbmssoftware/www/'
         let projects = []
-        let ignore = ['AdminLTE-2.4.0-rc', 'cabin_init', 'cbms_app_init', 'cordova_icons', 'Executive Template', 'fpdf_old', 'gsc_init', 'model', 'oneway_old', 'patterns', 'php', 'phpMyAdmin-4.8.1-english', 'test']
+        let ignore = ['AdminLTE-2.4.0-rc', 'cabin_init', 'cbms_app_init', 'cesaco', 'cordova_icons', 'cbms_app_init', 'cordova_icons', 'deltanet_erp', 'erp.cbms.ro', 'erp2_core_old', 'erp2_old', 'Executive Template', 'fpdf_old', 'gsc_init', 'gsc_old', 'idox', 'iwave', 'magnet', 'masterbuild', 'model', 'oneway_old', 'patterns', 'php', 'phpMyAdmin-4.8.1-english', 'temp', 'temp1', 'temp2', 'temp3', 'temp4', 'temp5', 'temp6', 'test', 'wincon']
         let options = ["Choose local project: ", ""]
         let dir = globpath(path, '*', 0, 1)
         call filter(dir, 'isdirectory(v:val)')
