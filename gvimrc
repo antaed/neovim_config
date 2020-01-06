@@ -307,6 +307,9 @@ nnoremap <silent> <S-M-F2> :tabedit /Volumes/cbmssoftware/www/erp2/index.php<CR>
 nnoremap <leader>pv /\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
 vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
 
+" Activate Goyo
+nnoremap <silent> <expr> <F10> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
+
 
 
 " PLUGINS --------------------------------------------------------------------
@@ -354,6 +357,7 @@ call minpac#add('xolox/vim-misc', {'type': 'opt'})
 call minpac#add('gerw/vim-HiLinkTrace', {'type': 'opt'})
 call minpac#add('KabbAmine/vCoolor.vim', {'type': 'opt'})
 call minpac#add('chrisbra/unicode.vim', {'type': 'opt'})
+call minpac#add('junegunn/goyo.vim', {'type': 'opt'})
 " MacOS only
 call minpac#add('mkitt/browser-refresh.vim')
 
@@ -371,7 +375,7 @@ let g:ctrlp_extensions = ['dir', 'bookmarkdir']
 if executable('rg')
   let g:ctrlp_user_command = {
     \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
-    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
+    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
   let g:ctrlp_use_caching = 0
   let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
