@@ -8,6 +8,41 @@ function! CustomModified()
     return &modified ? '+' : ''
 endfunction
 
+" sync colorscheme
+augroup lightline-events
+    autocmd!
+    autocmd ColorScheme * call s:onColorSchemeChange(expand("<amatch>"))
+augroup END
+let s:colour_scheme_map = {'antaed': 'antaed_light'}
+function! s:onColorSchemeChange(scheme)
+    " Try a scheme provided already
+    execute 'runtime autoload/lightline/colorscheme/'.a:scheme.'.vim'
+    if exists('g:lightline#colorscheme#{a:scheme}#palette')
+        let g:lightline.colorscheme = a:scheme
+    else  " Try falling back to a known colour scheme
+        let l:colors_name = get(s:colour_scheme_map, a:scheme, '')
+        if empty(l:colors_name)
+            return
+        else
+            let g:lightline.colorscheme = l:colors_name
+        endif
+    endif
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
+
+" toggle colorscheme with goyo
+function! s:goyo_enter()
+    colorscheme antaed_light
+    silent! call lightline#disable()
+endfunction
+function! s:goyo_leave()
+    colorscheme antaed
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 set laststatus=2
 runtime macros/matchit.vim
 
@@ -375,7 +410,7 @@ let g:ctrlp_extensions = ['dir', 'bookmarkdir']
 if executable('rg')
   let g:ctrlp_user_command = {
     \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
-    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
+    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
   let g:ctrlp_use_caching = 0
   let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
