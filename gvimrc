@@ -1,6 +1,6 @@
 " GENERAL SETUP ------------------------------------------------
 
-let g:lightline = { 'colorscheme': 'antaed', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
+let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
             \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename', 'cocstatus' ] ] }, 
             \ 'inactive': { 'left': [ [ 'mode' ], [ 'modified' ], [ 'filename' ] ] }, 'subseparator': { 'left': '', 'right':'' }, 
             \ 'component_function': { 'cocstatus': 'coc#status', 'modified': 'CustomModified' } }
@@ -13,7 +13,7 @@ augroup lightline-events
     autocmd!
     autocmd ColorScheme * call s:onColorSchemeChange(expand("<amatch>"))
 augroup END
-let s:colour_scheme_map = {'antaed': 'antaed_light'}
+let s:colour_scheme_map = {'antaed_light': 'antaed'}
 function! s:onColorSchemeChange(scheme)
     " Try a scheme provided already
     execute 'runtime autoload/lightline/colorscheme/'.a:scheme.'.vim'
@@ -33,21 +33,21 @@ function! s:onColorSchemeChange(scheme)
 endfunction
 
 " toggle colorscheme with goyo
-function! s:goyo_enter()
-    colorscheme antaed_light
-    silent! call lightline#disable()
-endfunction
-function! s:goyo_leave()
-    colorscheme antaed
-endfunction
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" function! s:goyo_enter()
+"     colorscheme antaed_light
+"     silent! call lightline#disable()
+" endfunction
+" function! s:goyo_leave()
+"     colorscheme antaed
+" endfunction
+" autocmd! User GoyoEnter nested call <SID>goyo_enter()
+" autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 set laststatus=2
 runtime macros/matchit.vim
 
 set guifont=Input:h12
-colorscheme antaed
+colorscheme antaed_light
 
 if !exists("g:syntax_on")
     syntax enable
