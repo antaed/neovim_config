@@ -10,10 +10,10 @@ let s:lite3 = "B3BFCB" " #B3BFCB
 let s:lite2 = "DBE0E6" " #DBE1E6
 let s:lite1 = "EAEDF0" " #EAEDF0
 let s:white = "FFFFFF" " #FFFFFF
-let s:fluor = "CCB400" " #CCB400
-let s:lime0 = "77B800" " #77B800
-let s:mint0 = "00CC96" " #00CC96
-let s:turqo = "00B2BF" " #00B2BF
+let s:oranj = "E0AC1B" " #E0AC1B
+let s:lime0 = "A7B300" " #A7B300
+let s:mint0 = "00C490" " #00C490
+let s:turqo = "00ABB8" " #00ABB8
 let s:blue0 = "1DA5FF" " #1DA5FF
 let s:indig = "7381FF" " #7381FF
 let s:purpl = "AB73FF" " #AB73FF
@@ -271,7 +271,7 @@ call <sid>hi("jsop"                , s:dark2 , "" , "NONE")
 call <sid>hi("jsjq"                , s:mint0 , "" , "NONE")
 call <sid>hi("jsKwd"               , s:mint0 , "" , "NONE")
 call <sid>hi("jsObjKwd"            , s:mint0 , "" , "NONE")
-call <sid>hi("jsMtd"               , s:fluor , "" , "NONE")
+call <sid>hi("jsMtd"               , s:oranj , "" , "NONE")
 call <sid>hi("jsMtdKwd"            , s:mint0 , "" , "NONE")
 call <sid>hi("jsMtdMch"            , s:mint0 , "" , "NONE")
 call <sid>hi("jsPrpKwd"            , s:mint0 , "" , "NONE")
@@ -357,4 +357,4 @@ delf <sid>hi
 delf <sid>gui
 
 " Remove color variables
-unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:fluor s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:pink0 s:pink1 s:pink2
+unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:oranj s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:pink0 s:pink1 s:pink2
