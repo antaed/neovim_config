@@ -10,11 +10,11 @@ let s:lite3 = "B3BFCB" " #B3BFCB
 let s:lite2 = "DBE0E6" " #DBE1E6
 let s:lite1 = "EAEDF0" " #EAEDF0
 let s:white = "FFFFFF" " #FFFFFF
-let s:oranj = "E0AC1B" " #E0AC1B
-let s:lime0 = "A7B300" " #A7B300
+let s:gold0 = "B2A100" " #B2A100
+let s:green = "61994D" " #61994D
 let s:mint0 = "00C490" " #00C490
 let s:turqo = "00ABB8" " #00ABB8
-let s:blue0 = "1DA5FF" " #1DA5FF
+let s:blue0 = "33ADFF" " #33ADFF
 let s:indig = "7381FF" " #7381FF
 let s:purpl = "AB73FF" " #AB73FF
 let s:magen = "FF4073" " #FF4073
@@ -240,38 +240,38 @@ call <sid>hi("jsUndefined"         , s:dark1 , "" , "NONE")
 call <sid>hi("jsFloat"             , s:mint0 , "" , "NONE")
 call <sid>hi("jsNull"              , s:dark1 , "" , "NONE")
 call <sid>hi("jsException"         , s:mint0 , "" , "NONE")
-call <sid>hi("jsParenIfElse"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsIfElseBlock"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsTernaryIf"         , s:lime0 , "" , "NONE")
-call <sid>hi("jsSwitchBlock"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsRepeatBlock"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsFuncBlock"         , s:lime0 , "" , "NONE")
-call <sid>hi("jsObjectKey"         , s:lime0 , "" , "NONE")
-call <sid>hi("jsParen"             , s:lime0 , "" , "NONE")
-call <sid>hi("jsParenRepeat"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsGlobalNodeObjects" , s:lime0 , "" , "NONE")
-call <sid>hi("jsObjectValue"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsVariableDef"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsFuncName"          , s:lime0 , "" , "NONE")
-call <sid>hi("jsFunctionKey"       , s:lime0 , "" , "NONE")
-call <sid>hi("jsFuncArgs"          , s:lime0 , "" , "NONE")
-call <sid>hi("jsBracket"           , s:lime0 , "" , "NONE")
-call <sid>hi("jsPrototype"         , s:lime0 , "" , "NONE")
-call <sid>hi("jsExceptions"        , s:lime0 , "" , "NONE")
-call <sid>hi("jsArguments"         , s:lime0 , "" , "NONE")
-call <sid>hi("jsAsyncKeyword"      , s:lime0 , "" , "NONE")
-call <sid>hi("jsParenSwitch"       , s:lime0 , "" , "NONE")
+call <sid>hi("jsParenIfElse"       , s:green , "" , "NONE")
+call <sid>hi("jsIfElseBlock"       , s:green , "" , "NONE")
+call <sid>hi("jsTernaryIf"         , s:green , "" , "NONE")
+call <sid>hi("jsSwitchBlock"       , s:green , "" , "NONE")
+call <sid>hi("jsRepeatBlock"       , s:green , "" , "NONE")
+call <sid>hi("jsFuncBlock"         , s:green , "" , "NONE")
+call <sid>hi("jsObjectKey"         , s:green , "" , "NONE")
+call <sid>hi("jsParen"             , s:green , "" , "NONE")
+call <sid>hi("jsParenRepeat"       , s:green , "" , "NONE")
+call <sid>hi("jsGlobalNodeObjects" , s:green , "" , "NONE")
+call <sid>hi("jsObjectValue"       , s:green , "" , "NONE")
+call <sid>hi("jsVariableDef"       , s:green , "" , "NONE")
+call <sid>hi("jsFuncName"          , s:green , "" , "NONE")
+call <sid>hi("jsFunctionKey"       , s:green , "" , "NONE")
+call <sid>hi("jsFuncArgs"          , s:green , "" , "NONE")
+call <sid>hi("jsBracket"           , s:green , "" , "NONE")
+call <sid>hi("jsPrototype"         , s:green , "" , "NONE")
+call <sid>hi("jsExceptions"        , s:green , "" , "NONE")
+call <sid>hi("jsArguments"         , s:green , "" , "NONE")
+call <sid>hi("jsAsyncKeyword"      , s:green , "" , "NONE")
+call <sid>hi("jsParenSwitch"       , s:green , "" , "NONE")
 
 " Custom JS
-call <sid>hi("jsdt"                , s:lime0 , "" , "NONE")
-call <sid>hi("jsprop"              , s:lime0 , "" , "NONE")
-call <sid>hi("jsword"              , s:lime0 , "" , "NONE")
+call <sid>hi("jsdt"                , s:green , "" , "NONE")
+call <sid>hi("jsprop"              , s:green , "" , "NONE")
+call <sid>hi("jsword"              , s:green , "" , "NONE")
 call <sid>hi("jspct"               , s:neutr , "" , "NONE")
 call <sid>hi("jsop"                , s:dark2 , "" , "NONE")
 call <sid>hi("jsjq"                , s:mint0 , "" , "NONE")
 call <sid>hi("jsKwd"               , s:mint0 , "" , "NONE")
 call <sid>hi("jsObjKwd"            , s:mint0 , "" , "NONE")
-call <sid>hi("jsMtd"               , s:oranj , "" , "NONE")
+call <sid>hi("jsMtd"               , s:gold0 , "" , "NONE")
 call <sid>hi("jsMtdKwd"            , s:mint0 , "" , "NONE")
 call <sid>hi("jsMtdMch"            , s:mint0 , "" , "NONE")
 call <sid>hi("jsPrpKwd"            , s:mint0 , "" , "NONE")
@@ -313,7 +313,7 @@ call <sid>hi("gitCommitSummary"  , s:dark3 , "" , "NONE")
 
 " GitGutter highlighting
 call <sid>hi("GitGutterAdd"          , s:turqo , s:lite2 , "NONE")
-call <sid>hi("GitGutterChange"       , s:lime0 , s:lite2 , "NONE")
+call <sid>hi("GitGutterChange"       , s:green , s:lite2 , "NONE")
 call <sid>hi("GitGutterDelete"       , s:pink0 , s:lite2 , "NONE")
 call <sid>hi("GitGutterChangeDelete" , s:dark2 , s:lite2 , "NONE")
 
@@ -357,4 +357,4 @@ delf <sid>hi
 delf <sid>gui
 
 " Remove color variables
-unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:oranj s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:pink0 s:pink1 s:pink2
+unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:gold0 s:green s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:pink0 s:pink1 s:pink2

@@ -10,7 +10,7 @@ let s:lite2 = [ '#DBE1E6', '248' ] " #DBE1E6
 let s:lite1 = [ '#EAEDF0', '252' ] " #EAEDF0
 let s:white = [ '#FFFFFF', '15'  ] " #FFFFFF
 let s:mint0 = [ '#00C490', '148' ] " #00C490
-let s:blue0 = [ '#1DA5FF', '44'  ] " #1DA5FF
+let s:blue0 = [ '#33ADFF', '44'  ] " #33ADFF
 let s:purpl = [ '#AB73FF', '98'  ] " #AB73FF
 let s:magen = [ '#FF4073', '197' ] " #FF4073
 
