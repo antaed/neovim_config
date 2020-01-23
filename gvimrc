@@ -46,7 +46,8 @@ endfunction
 set laststatus=2
 runtime macros/matchit.vim
 
-set guifont=Input:h12
+set guifont=InputHack\ Bold:h12
+
 colorscheme antaed_light
 
 if !exists("g:syntax_on")
@@ -345,7 +346,7 @@ vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )."\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )."\<cr>"
+nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=InputHack\\ Bold:h12\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=InputHack:h12\<cr>"
 
 
 
