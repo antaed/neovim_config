@@ -1,9 +1,15 @@
 " GENERAL SETUP ------------------------------------------------
 
 let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
-            \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename', 'cocstatus' ] ] }, 
+            \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename' ], [ 'cocerror' ], [ 'cocwarn' ], [ 'cochint' ], [ 'cocinfo' ] ] }, 
             \ 'inactive': { 'left': [ [ 'mode' ], [ 'modified' ], [ 'filename' ] ] }, 'subseparator': { 'left': '', 'right':'' }, 
-            \ 'component_function': { 'cocstatus': 'coc#status', 'modified': 'CustomModified' } }
+            \ 'component_function': { 'modified': 'CustomModified' },
+            \ 'component_expand': {
+                    \ 'cocerror': 'LightLineCocError',
+                    \ 'cocwarn' : 'LightLineCocWarn',
+                    \ 'cochint' : 'LightLineCocHint',
+                    \ 'cocinfo' : 'LightLineCocInfo' },
+            \ }
 function! CustomModified()
     return &modified ? '+' : ''
 endfunction
@@ -12,6 +18,7 @@ endfunction
 augroup lightline-events
     autocmd!
     autocmd ColorScheme * call s:onColorSchemeChange(expand("<amatch>"))
+    autocmd User CocDiagnosticChange call lightline#update()
 augroup END
 let s:colour_scheme_map = {'antaed_light': 'antaed'}
 function! s:onColorSchemeChange(scheme)
@@ -32,6 +39,39 @@ function! s:onColorSchemeChange(scheme)
     call lightline#update()
 endfunction
 
+" custom coc-diagnose highlights
+function! s:LightlineCodDiagnostics(sign, kind) abort
+    let g:lightline.component_type = {
+                \   'cocerror': 'error',
+                \   'cocwarn' : 'warning',
+                \   'cochint' : 'hints',
+                \   'cocinfo' : 'info',
+                \ }
+  let css = { 'Ex': 'coc_status_error_sign', 'Wx': 'coc_status_warning_sign', 'Hx': 'coc_status_hint_sign', 'Ix': 'coc_status_info_sign' }
+  let sign = get(g:, css[a:sign], a:sign)
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info)
+    return ''
+  endif
+  let msgs = []
+  if get(info, a:kind, 0)
+    call add(msgs, sign . info[a:kind])
+  endif
+  return trim(join(msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+endfunction
+function! LightLineCocError() abort
+    return s:LightlineCodDiagnostics('Ex','error')
+endfunction
+function! LightLineCocWarn() abort
+    return s:LightlineCodDiagnostics('Wx','warning')
+endfunction
+function! LightLineCocHint() abort
+    return s:LightlineCodDiagnostics('Hx','hint')
+endfunction
+function! LightLineCocInfo() abort
+    return s:LightlineCodDiagnostics('Ix','info')
+endfunction
+
 " toggle colorscheme with goyo
 " function! s:goyo_enter()
 "     colorscheme antaed_light
@@ -46,7 +86,7 @@ endfunction
 set laststatus=2
 runtime macros/matchit.vim
 
-set guifont=InputHack\ Bold:h12
+set guifont=M+\ 1mn\ light:h13
 
 colorscheme antaed_light
 
@@ -320,7 +360,8 @@ tnoremap <F3> <C-w><C-c>
 nnoremap <F3> i<C-w><C-c>
 "
 " Jump to next error
-nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <F4> <Plug>(coc-diagnostic-next)
+nmap <silent> <S-F4> <Plug>(coc-diagnostic-prev)
 
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
@@ -346,7 +387,7 @@ vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=InputHack\\ Bold:h12\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=InputHack:h12\<cr>"
+nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>"
 
 
 

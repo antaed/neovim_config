@@ -2,25 +2,27 @@
 
 " Color definitions
 let s:black = "000000" " #000000
-let s:dark1 = "101317" " #101317
-let s:dark2 = "191E24" " #191E24
-let s:dark3 = "34404D" " #34404D
-let s:neutr = "51657B" " #51657B
-let s:lite3 = "6E88A2" " #6E88A2
-let s:lite2 = "98ACBF" " #98ACBF
-let s:lite1 = "C0CDD8" " #C0CDD8
+let s:dark1 = "0E101B" " #0E101B
+let s:dark2 = "161B2C" " #161B2C
+let s:dark3 = "2E3A5C" " #2E3A5C
+let s:neutr = "495F92" " #495F92
+let s:lite3 = "6982B4" " #6982B4
+let s:lite2 = "96A9CA" " #96A9CA
+let s:lite1 = "BFCBDF" " #BFCBDF
 let s:white = "FFFFFF" " #FFFFFF
 let s:fluor = "A3C924" " #A3C924
 let s:lime0 = "73D072" " #73D072
 let s:mint0 = "2EE1B2" " #2EE1B2
 let s:turqo = "00BAC7" " #00BAC7
 let s:blue0 = "1DA5FF" " #1DA5FF
-let s:blue1 = "0F3357" " #0F3357
-let s:blue2 = "112132" " #112132
 let s:indig = "6C76D5" " #6C76D5
 let s:purpl = "9E6CEA" " #9E6CEA
 let s:magen = "DC184D" " #DC184D
 let s:pink0 = "FF3369" " #FF3369
+let s:diffa = "112711" " #D1F0E7
+let s:difft = "0F3357" " #0F3357
+let s:diffc = "112132" " #112132
+let s:diffd = "291629" " #F0E4E7
 
 " Theme setup
 hi clear
@@ -35,7 +37,9 @@ fun <sid>hi(group, guifg, guibg, attr)
   if a:guibg != ""
     exec "hi " . a:group . " guibg=#" . s:gui(a:guibg)
   endif
-  if a:attr != ""
+  if a:attr == "undercurl"
+    exec "hi " . a:group . " gui=undercurl guisp=#".s:dark3
+  elseif a:attr != ""
     exec "hi " . a:group . " gui="    . a:attr
   endif
 endfun
@@ -62,7 +66,7 @@ call <sid>hi("SpecialKey"   , s:lite3 , ""      , "NONE")
 call <sid>hi("Ignore"       , s:lite3 , s:dark1 , "NONE")
 call <sid>hi("FoldColumn"   , s:neutr , s:dark1 , "NONE")
 call <sid>hi("CursorLineNr" , s:lite1 , s:dark1 , "NONE")
-call <sid>hi("SignColumn"   , s:white , s:dark1 , "NONE")
+call <sid>hi("SignColumn"   , s:neutr , s:dark1 , "NONE")
 call <sid>hi("Search"       , s:pink0 , s:dark1 , "NONE")
 call <sid>hi("QuickFixLine" , s:white , s:dark2 , "NONE")
 call <sid>hi("TabLineFill"  , s:black , s:lite1 , "NONE")
@@ -194,12 +198,12 @@ call <sid>hi("phpIntVar"          , s:indig , "" , "NONE")
 call <sid>hi("phpMethods"         , s:indig , "" , "NONE")
 call <sid>hi("phpMethodsVar"      , s:indig , "" , "NONE")
 call <sid>hi("phpDef"             , s:indig , "" , "NONE")
+call <sid>hi("phpCap"             , s:purpl , "" , "NONE")
 call <sid>hi("phpMethod"          , s:purpl , "" , "NONE")
 call <sid>hi("phpFunc"            , s:purpl , "" , "NONE")
 call <sid>hi("phpClass"           , s:purpl , "" , "NONE")
 call <sid>hi("phpClasses"         , s:purpl , "" , "NONE")
 call <sid>hi("phpClassExtends"    , s:purpl , "" , "NONE")
-call <sid>hi("phpCap"             , s:purpl , "" , "NONE")
 call <sid>hi("phpFunction"        , s:purpl , "" , "NONE")
 call <sid>hi("phpKeyword"         , s:blue0 , "" , "NONE")
 call <sid>hi("phpFunctions"       , s:blue0 , "" , "NONE")
@@ -303,10 +307,10 @@ call <sid>hi("vimNotation"  , s:lite2 , "" , "NONE")
 call <sid>hi("vimMapModKey" , s:lite2 , "" , "NONE")
 
 " Diff highlighting
-call <sid>hi("DiffAdd"     , s:white , s:blue1 , "NONE")
-call <sid>hi("DiffChange"  , ""      , s:blue2 , "NONE")
-call <sid>hi("DiffDelete"  , s:black , s:black , "NONE")
-call <sid>hi("DiffText"    , s:white , s:blue1 , "NONE")
+call <sid>hi("DiffChange"  , ""      , s:diffc , "NONE")
+call <sid>hi("DiffText"    , s:white , s:difft , "NONE")
+call <sid>hi("DiffAdd"     , ""      , s:diffa , "NONE")
+call <sid>hi("DiffDelete"  , s:diffd , s:diffd , "NONE")
 
 " Git highlighting
 call <sid>hi("gitCommitOverflow" , s:magen , "" , "NONE")
@@ -353,9 +357,27 @@ call <sid>hi("CtrlPMatch"       , s:pink0 , ""      , "NONE")
 call <sid>hi("CtrlPMode2"   , s:neutr , s:black , "NONE") " 'prt' or 'win' , 'regex' , the working directory (|hl-LineNr|)
 call <sid>hi("CtrlPMode1"   , s:lite3 , s:black , "NONE") " 'file' or 'path' or 'line' , and the current mode (Character)
 
+" COC
+call <sid>hi("CocErrorSign"          , s:magen , "" , "NONE")
+call <sid>hi("CocWarningSign"        , s:fluor , "" , "NONE")
+call <sid>hi("CocInfoSign"           , s:indig , "" , "NONE")
+call <sid>hi("CocHintSign"           , s:turqo , "" , "NONE")
+call <sid>hi("CocErrorVirtualText"   , s:dark3 , "" , "NONE")
+call <sid>hi("CocWarningVirtualText" , s:dark3 , "" , "NONE")
+call <sid>hi("CocInfoVirtualText"    , s:dark3 , "" , "NONE")
+call <sid>hi("CocHintVirtualText"    , s:dark3 , "" , "NONE")
+call <sid>hi("CocErrorFloat"         , s:lite2 , "" , "NONE")
+call <sid>hi("CocWarningFloat"       , s:lite2 , "" , "NONE")
+call <sid>hi("CocInfoFloat"          , s:lite2 , "" , "NONE")
+call <sid>hi("CocHintFloat"          , s:lite2 , "" , "NONE")
+call <sid>hi("CocErrorHighlight"     , ""      , "" , "undercurl")
+call <sid>hi("CocWarningHighlight"   , ""      , "" , "undercurl")
+call <sid>hi("CocInfoHighlight"      , ""      , "" , "undercurl")
+call <sid>hi("CocHintHighlight"      , ""      , "" , "undercurl")
+
 " Remove functions
 delf <sid>hi
 delf <sid>gui
 
 " Remove color variables
-unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:fluor s:lime0 s:mint0 s:turqo s:blue0 s:blue1 s:blue2 s:indig s:purpl s:magen s:pink0
+unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:fluor s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:pink0 s:diffa s:difft s:diffc s:diffd

@@ -2,13 +2,13 @@
 
 " Color definitions
 let s:black = "000000" " #000000
-let s:dark1 = "27313F" " #27313F
-let s:dark2 = "43556B" " #43556B
-let s:dark3 = "5D7792" " #5D7792
-let s:neutr = "859AB0" " #859AB0
-let s:lite3 = "B3BFCB" " #B3BFCB
-let s:lite2 = "DBE0E6" " #DBE1E6
-let s:lite1 = "EAEDF0" " #EAEDF0
+let s:dark1 = "233146" " #233146
+let s:dark2 = "3A5272" " #3A5272
+let s:dark3 = "5177A1" " #5177A1
+let s:neutr = "799ABB" " #799ABB
+let s:lite3 = "ABC1D5" " #ABC1D5
+let s:lite2 = "D6E2EB" " #D6E2EB
+let s:lite1 = "E7EEF3" " #E7EEF3
 let s:white = "FFFFFF" " #FFFFFF
 let s:gold0 = "A8990F" " #A8990F
 let s:lime0 = "5C940D" " #5C940D
@@ -17,6 +17,7 @@ let s:turqo = "1098AD" " #1098AD
 let s:blue0 = "1998FF" " #1998FF
 let s:indig = "845EF7" " #845EF7
 let s:purpl = "CC5DE8" " #CC5DE8
+let s:magen = "FF3369" " #FF3369
 let s:fluor = "E3FF54" " #E3FF54
 let s:diffa = "D1F0E7" " #D1F0E7
 let s:difft = "CFD3FF" " #CFD3FF
@@ -36,7 +37,9 @@ fun <sid>hi(group, guifg, guibg, attr)
   if a:guibg != ""
     exec "hi " . a:group . " guibg=#" . s:gui(a:guibg)
   endif
-  if a:attr != ""
+  if a:attr == "undercurl"
+    exec "hi " . a:group . " gui=undercurl guisp=#".s:lite3
+  elseif a:attr != ""
     exec "hi " . a:group . " gui="    . a:attr
   endif
 endfun
@@ -63,7 +66,7 @@ call <sid>hi("SpecialKey"   , s:dark3 , ""      , "NONE")
 call <sid>hi("Ignore"       , s:dark3 , s:lite1 , "NONE")
 call <sid>hi("FoldColumn"   , s:neutr , s:lite1 , "NONE")
 call <sid>hi("CursorLineNr" , s:dark1 , s:lite1 , "NONE")
-call <sid>hi("SignColumn"   , s:black , s:lite1 , "NONE")
+call <sid>hi("SignColumn"   , s:neutr , s:lite1 , "NONE")
 call <sid>hi("Search"       , s:black , s:fluor , "NONE")
 call <sid>hi("QuickFixLine" , s:black , s:lite2 , "NONE")
 call <sid>hi("TabLineFill"  , s:white , s:dark1 , "NONE")
@@ -354,9 +357,27 @@ call <sid>hi("CtrlPMatch"       , s:black , s:fluor      , "NONE")
 call <sid>hi("CtrlPMode2"   , s:neutr , s:white , "NONE") " 'prt' or 'win' , 'regex' , the working directory (|hl-LineNr|)
 call <sid>hi("CtrlPMode1"   , s:dark3 , s:white , "NONE") " 'file' or 'path' or 'line' , and the current mode (Character)
 
+" COC
+call <sid>hi("CocErrorSign"          , s:magen , "" , "NONE")
+call <sid>hi("CocWarningSign"        , s:gold0 , "" , "NONE")
+call <sid>hi("CocInfoSign"           , s:indig , "" , "NONE")
+call <sid>hi("CocHintSign"           , s:turqo , "" , "NONE")
+call <sid>hi("CocErrorVirtualText"   , s:lite3 , "" , "NONE")
+call <sid>hi("CocWarningVirtualText" , s:lite3 , "" , "NONE")
+call <sid>hi("CocInfoVirtualText"    , s:lite3 , "" , "NONE")
+call <sid>hi("CocHintVirtualText"    , s:lite3 , "" , "NONE")
+call <sid>hi("CocErrorFloat"         , s:dark2 , "" , "NONE")
+call <sid>hi("CocWarningFloat"       , s:dark2 , "" , "NONE")
+call <sid>hi("CocInfoFloat"          , s:dark2 , "" , "NONE")
+call <sid>hi("CocHintFloat"          , s:dark2 , "" , "NONE")
+call <sid>hi("CocErrorHighlight"     , ""      , "" , "undercurl")
+call <sid>hi("CocWarningHighlight"   , ""      , "" , "undercurl")
+call <sid>hi("CocInfoHighlight"      , ""      , "" , "undercurl")
+call <sid>hi("CocHintHighlight"      , ""      , "" , "undercurl")
+
 " Remove functions
 delf <sid>hi
 delf <sid>gui
 
 " Remove color variables
-unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:gold0 s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:fluor s:diffa s:difft s:diffc s:diffd
+unlet s:black s:dark1 s:dark2 s:dark3 s:neutr s:lite3 s:lite2 s:lite1 s:white s:gold0 s:lime0 s:mint0 s:turqo s:blue0 s:indig s:purpl s:magen s:fluor s:diffa s:difft s:diffc s:diffd
