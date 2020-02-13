@@ -47,7 +47,7 @@ function! s:LightlineCodDiagnostics(sign, kind) abort
                 \   'cochint' : 'hints',
                 \   'cocinfo' : 'info',
                 \ }
-  let css = { 'Ex': 'coc_status_error_sign', 'Wx': 'coc_status_warning_sign', 'Hx': 'coc_status_hint_sign', 'Ix': 'coc_status_info_sign' }
+  let css = { 'E:': 'coc_status_error_sign', 'W:': 'coc_status_warning_sign', 'H:': 'coc_status_hint_sign', 'I:': 'coc_status_info_sign' }
   let sign = get(g:, css[a:sign], a:sign)
   let info = get(b:, 'coc_diagnostic_info', {})
   if empty(info)
@@ -60,16 +60,16 @@ function! s:LightlineCodDiagnostics(sign, kind) abort
   return trim(join(msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
 endfunction
 function! LightLineCocError() abort
-    return s:LightlineCodDiagnostics('Ex','error')
+    return s:LightlineCodDiagnostics('E:','error')
 endfunction
 function! LightLineCocWarn() abort
-    return s:LightlineCodDiagnostics('Wx','warning')
+    return s:LightlineCodDiagnostics('W:','warning')
 endfunction
 function! LightLineCocHint() abort
-    return s:LightlineCodDiagnostics('Hx','hint')
+    return s:LightlineCodDiagnostics('H:','hint')
 endfunction
 function! LightLineCocInfo() abort
-    return s:LightlineCodDiagnostics('Ix','info')
+    return s:LightlineCodDiagnostics('I:','info')
 endfunction
 
 " toggle colorscheme with goyo
@@ -520,7 +520,7 @@ inoremap <silent><expr> <C-j>
 inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -753,7 +753,7 @@ function SetProject(s) abort
         endfor
     else
         let path = '/Volumes/cbmssoftware/www/'
-        let projects = ["cesaco", "gsc", "idox", "insidetelecom", "iwave", "magnetcenter", "mjp", "neotronix", "reyravos", "thermopan", "arhivatorul"]
+        let projects = ["arhivatorul", "cesaco", "cridov", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
         let options = ["Choose ERP2 project: ", ""]
         exe ":cd ".path."erp2_core/dev/"
     endif
