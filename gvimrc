@@ -360,8 +360,10 @@ tnoremap <F3> <C-w><C-c>
 nnoremap <F3> i<C-w><C-c>
 "
 " Jump to next error
-nmap <silent> <F4> <Plug>(coc-diagnostic-next)
-nmap <silent> <S-F4> <Plug>(coc-diagnostic-prev)
+nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <S-F4> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <M-F4> <Plug>(coc-diagnostic-next)
+nmap <silent> <S-M-F4> <Plug>(coc-diagnostic-prev)
 
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
