@@ -388,6 +388,9 @@ nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.v
 " Toggle colorscheme
 nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>"
 
+" Start CtrlP in MRU mode
+nnoremap <C-p> :CtrlPBuffer<cr>
+
 
 
 " PLUGINS --------------------------------------------------------------------
@@ -463,8 +466,8 @@ endif
 let g:ctrlp_open_multiple_files = 'i'
 " custom prompt mappings
 let g:ctrlp_prompt_mappings = {
-    \ 'ToggleType(1)': ['<c-f>', '<c-up>', '<c-l>'],
-    \ 'ToggleType(-1)': ['<c-b>', '<c-down>', '<c-h>'],
+    \ 'ToggleType(1)': ['<c-b>', '<c-down>', '<c-h>'],
+    \ 'ToggleType(-1)': ['<c-f>', '<c-up>', '<c-l>'],
     \ 'PrtCurLeft()': ['<left>', '<c-^>'],
     \ 'PrtCurRight()':['<right>'],
 \}
