@@ -362,8 +362,6 @@ nnoremap <F3> i<C-w><C-c>
 " Jump to next error
 nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
 nmap <silent> <S-F4> <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <M-F4> <Plug>(coc-diagnostic-next)
-nmap <silent> <S-M-F4> <Plug>(coc-diagnostic-prev)
 
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
@@ -378,7 +376,6 @@ vmap <F7> y:CtrlP<CR><C-\>c
 " Switch projects
 nnoremap <F2> :call SetProject(1)<CR>
 nnoremap <S-F2> :call SetProject(0)<CR>
-nnoremap <M-F2> :tabedit /Volumes/cbmssoftware/www/erp2_core/languages/ro.php<CR>:pwd<CR>
 nnoremap <silent> <S-M-F2> :tabedit /Volumes/cbmssoftware/www/erp2/index.php<CR>/Andi<CR>:nohl<CR>2T'
 
 " Get PHP Variables
@@ -450,13 +447,13 @@ let g:ctrlp_working_path_mode = 'w'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 " :help ctrlp-commands-extensions
-let g:ctrlp_extensions = ['dir', 'bookmarkdir']
+" let g:ctrlp_extensions = ['dir', 'bookmarkdir']
 
 " Use ctrlp with ripgrep
 if executable('rg')
   let g:ctrlp_user_command = {
     \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
-    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
+    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video,*backup*}/*" -g "!**/{css,js}/**/"' }
   let g:ctrlp_use_caching = 0
   let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
@@ -757,7 +754,7 @@ function SetProject(s) abort
         let path = '/Volumes/cbmssoftware/www/'
         let projects = ["arhivatorul", "cesaco", "cridov", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
         let options = ["Choose ERP2 project: ", ""]
-        exe ":cd ".path."erp2_core/dev/"
+        exe ":cd ".path."erp2_core/"
     endif
     for i in projects
         let n = index(projects, i)+1
