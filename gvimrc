@@ -459,9 +459,32 @@ if executable('rg')
   let g:ctrlp_switch_buffer = 'et'
   set grepprg=rg\ --color=never
 endif
-
 " Open multiple files
-  let g:ctrlp_open_multiple_files = 'i'
+let g:ctrlp_open_multiple_files = 'i'
+" custom prompt mappings
+let g:ctrlp_prompt_mappings = {
+    \ 'ToggleType(1)': ['<c-f>', '<c-up>', '<c-l>'],
+    \ 'ToggleType(-1)': ['<c-b>', '<c-down>', '<c-h>'],
+    \ 'PrtCurLeft()': ['<left>', '<c-^>'],
+    \ 'PrtCurRight()':['<right>'],
+\}
+" custom status line
+let g:ctrlp_status_func = {
+    \ 'main': 'CtrlP_Statusline_1',
+    \ 'prog': 'CtrlP_Statusline_2',
+    \ }
+function! CtrlP_Statusline_1(...)
+    let prev = '  %#StatusLine#<%*'
+    let item = '%#Search# '.toupper(a:5).' %*'
+    let next = '%#StatusLine#>%* '
+    let dir  = ' %=%<%#StatusLineNC#'.getcwd().'%* '
+    return prev.item.next.dir
+endfunction
+function! CtrlP_Statusline_2(...)
+    let len = '%#StatusLine# '.a:1.' %*'
+    let dir = ' %=%<%#StatusLineNC# '.getcwd().' %*'
+    return len.dir
+endfunction
 
 " Session management
 let g:session_autoload = "no"
