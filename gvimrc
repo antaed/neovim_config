@@ -388,8 +388,6 @@ nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.v
 " Toggle colorscheme
 nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h13\<cr>"
 
-" Start CtrlP in MRU mode
-nnoremap <C-p> :CtrlPBuffer<cr>
 
 
 
@@ -446,7 +444,7 @@ call minpac#add('mkitt/browser-refresh.vim')
 "packloadall"
 
 " Set ctrlp working directory to cwd
-let g:ctrlp_working_path_mode = 'w'
+let g:ctrlp_working_path_mode = 'wa'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 " :help ctrlp-commands-extensions
@@ -456,9 +454,9 @@ let g:ctrlp_max_depth=40
 if executable('rg')
   let g:ctrlp_user_command = {
     \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
-    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video,*backup*}/*" -g "!**/{css,js}/**/"' }
+    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video,*backup*,*old*}/*" -g "!**/{css,js}/**/"' }
   let g:ctrlp_use_caching = 0
-  let g:ctrlp_working_path_mode = 'ra'
+  " let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
   set grepprg=rg\ --color=never
 endif
@@ -488,6 +486,8 @@ function! CtrlP_Statusline_2(...)
     let dir = ' %=%<%#StatusLineNC# '.getcwd().' %*'
     return len.dir
 endfunction
+" Start CtrlP in buffer mode
+autocmd BufAdd,BufDelete * nnoremap <expr> <C-p> len(getbufinfo({'buflisted':1}))>1 ? ":CtrlPBuffer\<cr>" : ":CtrlP\<cr>"
 
 " Session management
 let g:session_autoload = "no"
