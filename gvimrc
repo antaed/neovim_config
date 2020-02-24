@@ -131,6 +131,9 @@ let g:netrw_winsize = 25
 autocmd TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
 autocmd GUIEnter * set vb t_vb= " Disable bell
 
+" Set default woring directory
+tcd Downloads/
+
 
 
 " KEY REMAPS ----------------------------------------------------------
@@ -444,7 +447,7 @@ call minpac#add('mkitt/browser-refresh.vim')
 "packloadall"
 
 " Set ctrlp working directory to cwd
-let g:ctrlp_working_path_mode = 'wa'
+let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
 " :help ctrlp-commands-extensions
@@ -456,7 +459,6 @@ if executable('rg')
     \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
     \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video,*backup*,*old*}/*" -g "!**/{css,js}/**/"' }
   let g:ctrlp_use_caching = 0
-  " let g:ctrlp_working_path_mode = 'ra'
   let g:ctrlp_switch_buffer = 'et'
   set grepprg=rg\ --color=never
 endif
@@ -780,7 +782,7 @@ function SetProject(s) abort
         let path = '/Volumes/cbmssoftware/www/'
         let projects = ["arhivatorul", "cesaco", "cridov", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
         let options = ["Choose ERP2 project: ", ""]
-        exe ":cd ".path."erp2_core/"
+        exe ":tcd ".path."erp2_core/"
     endif
     for i in projects
         let n = index(projects, i)+1
@@ -793,7 +795,7 @@ function SetProject(s) abort
     call inputrestore()
     if opt>0 && opt<=len(projects)
         if a:s==0
-            exe ":cd ".path.projects[opt-1]
+            exe ":tcd ".path.projects[opt-1]
             normal 
             echon "Working directory set to: "
             echohl MoreMsg | echon projects[opt-1] | echohl None
