@@ -783,7 +783,6 @@ function SetProject(s) abort
         let path = '/Volumes/cbmssoftware/www/'
         let projects = ["arhivatorul", "cesaco", "cridov", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
         let options = ["Choose ERP2 project: ", ""]
-        exe ":tcd ".path."erp2_core/"
     endif
     if a:s!=2
         for i in projects
@@ -805,20 +804,20 @@ function SetProject(s) abort
             echon "Working directory set to: "
             echohl MoreMsg | echon projects[opt-1] | echohl None
         else
+            exe ":tcd ".path."erp2_core/"
             silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
             if a:s==1
                 exe "normal! \$F'ci'".projects[opt-1]
-                normal "aY
-                silent exe ":w" | exe ":bd"
-                echo " \r"
-                echon "Line changed to: "
+                exe "normal! \$F'\"ayi'" | silent exe ":w" | exe ":bd"
+                echon "\nSelected project: "
             else
-                exe "normal! \"aY" | silent exe ":bd"
+                exe "normal! \$F'\"ayi'" | silent exe ":bd"
+                echon "ERP2 project: "
             endif
             echohl MoreMsg | echon substitute(@a, '\n$', '', '') | echohl None
         endif
     else
         normal 
-        echohl MoreMsg | echom "Nothing changed" | echohl None
+        echohl MoreMsg | echon "Nothing changed" | echohl None
     endif
 endfunction
