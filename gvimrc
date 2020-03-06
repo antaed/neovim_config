@@ -377,7 +377,8 @@ nmap <F7> :CtrlP<CR><C-\>w
 vmap <F7> y:CtrlP<CR><C-\>c
 
 " Switch projects
-nnoremap <F2> :call SetProject(1)<CR>
+nnoremap <F2> :call SetProject(2)<CR>
+nnoremap <M-F2> :call SetProject(1)<CR>
 nnoremap <S-F2> :call SetProject(0)<CR>
 nnoremap <silent> <S-M-F2> :tabedit /Volumes/cbmssoftware/www/erp2/index.php<CR>/Andi<CR>:nohl<CR>2T'
 
@@ -784,15 +785,19 @@ function SetProject(s) abort
         let options = ["Choose ERP2 project: ", ""]
         exe ":tcd ".path."erp2_core/"
     endif
-    for i in projects
-        let n = index(projects, i)+1
-        let option = ' '.(n<10 ? ' '.n : n).'. '.i
-        call add(options, option)
-    endfor
-    call inputsave()
-    call add(options, '')
-    let opt = inputlist(options)
-    call inputrestore()
+    if a:s!=2
+        for i in projects
+            let n = index(projects, i)+1
+            let option = ' '.(n<10 ? ' '.n : n).'. '.i
+            call add(options, option)
+        endfor
+        call inputsave()
+        call add(options, '')
+        let opt = inputlist(options)
+        call inputrestore()
+    else
+        let opt=1
+    endif
     if opt>0 && opt<=len(projects)
         if a:s==0
             exe ":tcd ".path.projects[opt-1]
@@ -800,11 +805,16 @@ function SetProject(s) abort
             echon "Working directory set to: "
             echohl MoreMsg | echon projects[opt-1] | echohl None
         else
-            silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" | exe "normal! \$F'ci'".projects[opt-1]
-            normal "aY
-            silent exe ":w" | exe ":bd"
-            echo " \r"
-            echon "Line changed to: "
+            silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
+            if a:s==1
+                exe "normal! \$F'ci'".projects[opt-1]
+                normal "aY
+                silent exe ":w" | exe ":bd"
+                echo " \r"
+                echon "Line changed to: "
+            else
+                exe "normal! \"aY" | silent exe ":bd"
+            endif
             echohl MoreMsg | echon substitute(@a, '\n$', '', '') | echohl None
         endif
     else
