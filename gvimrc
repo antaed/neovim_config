@@ -377,7 +377,7 @@ nmap <F7> :CtrlP<CR><C-\>w
 vmap <F7> y:CtrlP<CR><C-\>c
 
 " Switch projects
-nnoremap <F2> :call SetProject(2)<CR>
+nnoremap <F2> :call SetProject(3)<CR>
 nnoremap <M-F2> :call SetProject(1)<CR>
 nnoremap <S-F2> :call SetProject(0)<CR>
 nnoremap <silent> <S-M-F2> :tabedit /Volumes/cbmssoftware/www/erp2/index.php<CR>/Andi<CR>:nohl<CR>2T'
@@ -781,10 +781,10 @@ function SetProject(s) abort
         endfor
     else
         let path = '/Volumes/cbmssoftware/www/'
-        let projects = ["arhivatorul", "cesaco", "cridov", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
+        let projects = ["arhivatorul", "cesaco", "cridov", "dea", "gsc", "ides", "idox", "insidetelecom", "iwave", "mjp", "neotronix", "thermopan"]
         let options = ["Choose ERP2 project: ", ""]
     endif
-    if a:s!=2
+    if (a:s!=2 && a:s!=3)
         for i in projects
             let n = index(projects, i)+1
             let option = ' '.(n<10 ? ' '.n : n).'. '.i
@@ -805,14 +805,20 @@ function SetProject(s) abort
             echohl MoreMsg | echon projects[opt-1] | echohl None
         else
             exe ":tcd ".path."erp2_core/"
-            silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
             if a:s==1
+                silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
                 exe "normal! \$F'ci'".projects[opt-1]
                 exe "normal! \$F'\"ayi'" | silent exe ":w" | exe ":bd"
                 echon "\nSelected project: "
-            else
+            elseif a:s==2
+                silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
                 exe "normal! \$F'\"ayi'" | silent exe ":bd"
                 echon "ERP2 project: "
+            else
+                exe ":e /Library/Application\ Support/Tunnelblick/Logs/*openvpn.log" | silent exe "/SUCCESS"
+                exe "normal! 3f,l\"byt," | exe ":bd"
+                silent exe ":e ".path."erp2/index.php" | silent exe "/Andi" 
+                exe "normal! 0f'di'\"bP\"aY" | silent exe ":w" | exe ":bd"
             endif
             echohl MoreMsg | echon substitute(@a, '\n$', '', '') | echohl None
         endif
