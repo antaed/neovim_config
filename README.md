@@ -1,11 +1,11 @@
-# My MacVim config
+# My Neovim (on WSL2) config
 
 ![screenshot](https://repository-images.githubusercontent.com/221780628/b6f09b00-0940-11ea-9447-f21ae15e3c42)
 
-This repository contains my MacVim configuration process for a new computer, it is based on my own work flow as a web developer (in PHP, JavaScript, HTML, CSS) and it includes:
+This repository contains my Neovim configuration process for a new computer, it is based on my own work flow as a web developer (in PHP, JavaScript, HTML, CSS) and it includes:
 
-* my **gvimrc** file
-* **.vim** directory containing various customization files including my own theme, snippets, syntax highlighting, etc.
+* my **init.vim** file
+* **nvim** directory containing various customization files including my own theme, snippets, syntax highlighting, etc.
 * the font of my choice
 
 **Disclaimer**\
@@ -16,25 +16,19 @@ This repository contains my MacVim configuration process for a new computer, it 
 
 ### Step 1 - Install prequisites
 
-* [MacVim](https://github.com/macvim-dev/macvim/releases/tag/snapshot-161)
-* [Homebrew](https://brew.sh/)
-* [Karabiner Elements](https://pqrs.org/osx/karabiner/)
-* [Add Karabiner rules](https://pqrs.org/osx/karabiner/complex_modifications/) - Change caps_lock key (rev 4+) & Change shift key (rev 2+)
-* `brew install ripgrep`
-* `brew install universal-ctags`
+* Neovim
+* `sudo apt install ripgrep`
+* `sudo apt install universal-ctags`
 
 
 ### Step 2 - Prepare $HOME directory
 
 ```
 $ cd ~
-$ mkdir .backups/.backup .backups/.swp .backups/.undo gutentags
-$ git clone git@github.com:antaed/macvim_config.git .vim
-$ git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-$ echo "runtime gvimrc" > .gvimrc
+$ mkdir .config/backups/.backup .config/backups/.swp .config/.backups/.undo gutentags
+$ git clone git@github.com:antaed/neovim_config.git .config/nvim
+$ git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 ```
-* Install one of the font variants from *~/.vim/antaed*
-
 
 ### Step 3 - Install plugins
 
@@ -42,28 +36,22 @@ $ echo "runtime gvimrc" > .gvimrc
 * `:call coc#util#install()`
 
 
-### Step 4 - Set MacVim as git mergetool
+### Step 4 - Set Neovim as git mergetool
 
 ```
 $ git config --global merge.tool diffconflicts
-$ git config --global mergetool.diffconflicts.cmd "macvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\""
+$ git config --global mergetool.diffconflicts.cmd "neovim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\""
 $ git config --global mergetool.diffconflicts.trustExitCode true
 $ git config --global mergetool.keepBackup false
 ```
 
-### Step 5 - Set MacVim preferences
-
-* When MacVim launches: Check for updates
-* Open files from applications: in a new window and set the arglist
-* After last window closes: Hide MacVim
-
-
 ### If issues...
 
 * check *~/.config/* permissions
-* open files that won't load with MacVim and run `:w ++ff=unix`
+* open files that won't load with Neovim and run `:w ++ff=unix`
 
 <br/>
 
 ### [Go to gVim version](https://github.com/antaed/gvim_config)
+### [Go to MacVim version](https://github.com/antaed/macvim_config)
 
