@@ -108,6 +108,7 @@ endif
 
 " Defaults
 set mouse=a
+set clipboard=unnamedplus
 set undodir=~/.config/.backups/.undo// directory=~/.config/.backups/.swp// backupdir=~/.config/.backups/.backup// " Set undo and swap backup directories
 set tabstop=8 softtabstop=4 shiftwidth=4 expandtab breakindent autoindent
 set laststatus=2 noshowmode " Because lightline won't show up without this | Not necessary if powerline is installed
@@ -373,6 +374,10 @@ nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.v
 " Toggle colorscheme
 nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn:h12:cDEFAULT\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h12:cDEFAULT\<cr>"
 
+xnoremap <C-c> "+y
+xnoremap <C-v> "+p
+nnoremap <C-v> "+p
+
 
 
 " PLUGINS --------------------------------------------------------------------
@@ -479,7 +484,7 @@ let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
 " SnipMate parser version
-" let g:snipMate.snippet_version = 1
+let g:snipMate.shippet_version = 1
 " Enable php snippet in html
 au BufRead,BufNewFile *.html set ft=html.php
 
@@ -561,18 +566,18 @@ xmap al asl
 omap il isl
 omap al asl
 " if you have not copied default recipes
-" let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 " add spaces inside braket
-" let g:sandwich#recipes += [
-"       \   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
-"       \   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
-"       \   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
-"       \   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['{']},
-"       \   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['[']},
-"       \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
-"       \   {'buns': ['<?php\s*', '\s*?>'], 'nesting': 1, 'regex': 1, 'kind': ['textobj'], 'filetype': ['php'], 'input': ['p']},
-"       \   {'buns': ['^\s*', '\s*$'], 'regex': 1, 'linewise': 1, 'kind': ['textobj'], 'input': ['l']},
-"       \ ]
+let g:sandwich#recipes += [
+      \   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+      \   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+      \   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1, 'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+      \   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['{']},
+      \   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['[']},
+      \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
+      \   {'buns': ['<?php\s*', '\s*?>'], 'nesting': 1, 'regex': 1, 'kind': ['textobj'], 'filetype': ['php'], 'input': ['p']},
+      \   {'buns': ['^\s*', '\s*$'], 'regex': 1, 'linewise': 1, 'kind': ['textobj'], 'input': ['l']},
+      \ ]
 
 
 
