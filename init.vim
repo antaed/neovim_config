@@ -6,7 +6,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-let g:lightline = { 'colorscheme': 'antaed', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
+let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
             \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename' ], [ 'cocerror' ], [ 'cocwarn' ], [ 'cochint' ], [ 'cocinfo' ] ] }, 
             \ 'inactive': { 'left': [ [ 'mode' ], [ 'modified' ], [ 'filename' ] ] }, 'subseparator': { 'left': '', 'right':'' }, 
             \ 'component_function': { 'modified': 'CustomModified' },
@@ -26,7 +26,7 @@ augroup lightline-events
     autocmd ColorScheme * call s:onColorSchemeChange(expand("<amatch>"))
     autocmd User CocDiagnosticChange call lightline#update()
 augroup END
-let s:colour_scheme_map = {'antaed_light': 'antaed'}
+let s:colour_scheme_map = {'antaed': 'antaed_light'}
 function! s:onColorSchemeChange(scheme)
     " Try a scheme provided already
     execute 'runtime autoload/lightline/colorscheme/'.a:scheme.'.vim'
@@ -89,7 +89,7 @@ endfunction
 " autocmd! User GoyoEnter nested call <SID>goyo_enter()
 " autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-colorscheme antaed
+colorscheme antaed_light
 if !exists("g:syntax_on")
     syntax enable
 endif
@@ -478,7 +478,8 @@ let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
 " SnipMate parser version
-let g:snipMate.shippet_version = 1
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
 " Enable php snippet in html
 au BufRead,BufNewFile *.html set ft=html.php
 
@@ -713,7 +714,7 @@ com! DiffSaved call s:DiffWithSaved()
 
 " Set working directory to project root
 function! SetProject() abort
-    let path = 'C:\xampp\htdocs\'
+    let path = '~/www/'
     let projects = []
     let ignore = ['_builder', 'dashboard', 'fpdf', 'git', 'img', 'php', 'php_directories', 'php_gallery', 'php_tutorial', 'sigs', 'webalizer', 'xampp']
     let dir = globpath(path, '*', 0, 1)
