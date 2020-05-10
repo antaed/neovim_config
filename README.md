@@ -25,15 +25,13 @@ This repository contains my Neovim configuration process for a new computer, it 
 
 ```
 $ cd ~
-$ mkdir .config/backups/.backup .config/backups/.swp .config/.backups/.undo gutentags
 $ git clone git@github.com:antaed/neovim_config.git .config/nvim
-$ git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 ```
 
 ### Step 3 - Install plugins
 
-* `:call minpac#update()` 
-* `:call coc#util#install()`
+* `:PlugInstall`
+* `:CocInstall ...`
 
 
 ### Step 4 - Set Neovim as git mergetool

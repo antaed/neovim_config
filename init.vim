@@ -1,4 +1,7 @@
 " GENERAL SETUP ------------------------------------------------
+let g:python_host_prog = '/usr/bin/python2.7'
+let g:python3_host_prog = '/usr/bin/python3.8'
+
 if (has("termguicolors"))
     set termguicolors
 endif
@@ -109,7 +112,7 @@ endif
 " Defaults
 set mouse=a
 set clipboard=unnamedplus
-set undodir=~/.config/.backups/.undo// directory=~/.config/.backups/.swp// backupdir=~/.config/.backups/.backup// " Set undo and swap backup directories
+set undofile
 set tabstop=8 softtabstop=4 shiftwidth=4 expandtab breakindent autoindent
 set laststatus=2 noshowmode " Because lightline won't show up without this | Not necessary if powerline is installed
 set relativenumber number
@@ -131,6 +134,9 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+" Set default working directory
+tcd ~/www/
 
 
 
@@ -382,52 +388,40 @@ nnoremap <C-v> "+p
 
 " PLUGINS --------------------------------------------------------------------
 
-packadd minpac
-call minpac#init()
-" Minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+call plug#begin(stdpath('data').'/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls
+Plug 'tpope/vim-vinegar'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'honza/vim-snippets'
+Plug 'garbas/vim-snipmate'
+Plug 'godlygeek/tabular'
+Plug 'Raimondi/delimitMate'
+Plug 'vim-scripts/CSSMinister'
+Plug 'tomtom/tcomment_vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'captbaritone/better-indent-support-for-php-with-html'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'qpkorr/vim-renamer'
+Plug 'junegunn/vim-slash'
+Plug 'tpope/vim-abolish'
+Plug 'machakann/vim-sandwich'
+Plug 'whiteinge/diffconflicts'
+Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'xolox/vim-session', {'on': 'OpenSession'}
+Plug 'xolox/vim-misc', {'on': 'OpenSession'}
+" Plug 'chrisbra/unicode.vim', {'type': 'opt'}
+" Plug 'gerw/vim-HiLinkTrace', {'type': 'opt'}
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+call plug#end()
 
-" Add other plugins here.
-function! s:coc_cb(hooktype, name) abort
-    let g:coc_global_extensions = [ 'coc-css', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-phpls' ]
-    execute 'packadd ' . a:name
-    call coc#util#install()
-    call coc#util#install_extension(g:coc_global_extensions)
-endfunction
-call minpac#add('neoclide/coc.nvim', {'do': function('s:coc_cb')})
-call minpac#add('tpope/vim-vinegar')
-call minpac#add('ctrlpvim/ctrlp.vim')
-call minpac#add('itchyny/lightline.vim')
-call minpac#add('marcweber/vim-addon-mw-utils')
-call minpac#add('tomtom/tlib_vim')
-call minpac#add('honza/vim-snippets')
-call minpac#add('garbas/vim-snipmate')
-call minpac#add('godlygeek/tabular')
-call minpac#add('Raimondi/delimitMate')
-call minpac#add('vim-scripts/CSSMinister')
-call minpac#add('tomtom/tcomment_vim')
-call minpac#add('jremmen/vim-ripgrep')
-call minpac#add('tpope/vim-repeat')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('ludovicchabant/vim-gutentags')
-call minpac#add('captbaritone/better-indent-support-for-php-with-html')
-call minpac#add('coderifous/textobj-word-column.vim')
-call minpac#add('qpkorr/vim-renamer')
-call minpac#add('junegunn/vim-slash')
-call minpac#add('tpope/vim-abolish')
-call minpac#add('machakann/vim-sandwich')
-call minpac#add('whiteinge/diffconflicts')
-call minpac#add('RRethy/vim-hexokinase', {'do': 'make hexokinase'})
-call minpac#add('stefandtw/quickfix-reflector.vim')
-call minpac#add('StanAngeloff/php.vim')
-call minpac#add('xolox/vim-session', {'type': 'opt'})
-call minpac#add('xolox/vim-misc', {'type': 'opt'})
-call minpac#add('chrisbra/unicode.vim', {'type': 'opt'})
-call minpac#add('gerw/vim-HiLinkTrace', {'type': 'opt'})
-call minpac#add('junegunn/goyo.vim', {'type': 'opt'})
-
-" Load the plugins right now. (optional)
-"packloadall"
 
 " Set ctrlp working directory to cwd
 let g:ctrlp_working_path_mode = 'ra'
@@ -490,12 +484,12 @@ au BufRead,BufNewFile *.html set ft=html.php
 
 " Gutentags config
 " let g:gutentags_ctags_executable = '~/ctags/ctags.exe'
-" let g:gutentags_cache_dir = '~/gutentags/'
-" function! GetPwd(path) abort
-"     return getcwd()
-" endfunction
-" let g:gutentags_project_root_finder='GetPwd'
-" let g:gutentags_add_default_project_roots=0
+let g:gutentags_cache_dir = '~/gutentags/'
+function! GetPwd(path) abort
+    return getcwd()
+endfunction
+let g:gutentags_project_root_finder='GetPwd'
+let g:gutentags_add_default_project_roots=0
 
 " Rg config
 nnoremap <Leader>/ :Rg<Space>
@@ -640,25 +634,25 @@ command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>,<line2>)
 
 
 " Gutentags set project roots
-" let g:gutentags_enabled_dirs = ['C:/xampp/htdocs', 'C:/_backup/Works']
-" let g:gutentags_init_user_func = 'CheckEnabledDirs'
-" function! CheckEnabledDirs(file) abort
-"     let file_path = fnamemodify(a:file, ':p:h')
-"     try
-"         let gutentags_root = gutentags#get_project_root(file_path)
-"         if filereadable(gutentags_root . '/_withtags')
-"             return 1
-"         endif
-"     catch
-"     endtry
-"     for enabled_dir in g:gutentags_enabled_dirs
-"         let enabled_path = fnamemodify(enabled_dir, ':p:h')
-"         if match(file_path, enabled_path) == 0
-"             return 1
-"         endif
-"     endfor
-"     return 0
-" endfunction
+let g:gutentags_enabled_dirs = ['~/www']
+let g:gutentags_init_user_func = 'CheckEnabledDirs'
+function! CheckEnabledDirs(file) abort
+    let file_path = fnamemodify(a:file, ':p:h')
+    try
+        let gutentags_root = gutentags#get_project_root(file_path)
+        if filereadable(gutentags_root . '/_withtags')
+            return 1
+        endif
+    catch
+    endtry
+    for enabled_dir in g:gutentags_enabled_dirs
+        let enabled_path = fnamemodify(enabled_dir, ':p:h')
+        if match(file_path, enabled_path) == 0
+            return 1
+        endif
+    endfor
+    return 0
+endfunction
 
 
 " Capture ex command output
