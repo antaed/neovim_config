@@ -16,22 +16,34 @@ This repository contains my Neovim configuration process for a new computer, it 
 
 ### Step 1 - Install prequisites
 
-* Neovim
+**Windows**
+* Chocolatey
+* Neovim via Chocolatey (for [clipboard integration](https://github.com/neovim/neovim/wiki/FAQ#where-should-i-put-my-config-vimrc))
+* AutoHotKey
+* M+ 1mn font
+
+**Ubuntu**
+* `sudo apt install neovim`
 * `sudo apt install ripgrep`
 * `sudo apt install universal-ctags`
+* [LAMP](https://www.how2shout.com/how-to/how-to-install-apache-mysql-php-phpmyadmin-on-windows-10-wsl.html)
+* [localhost](https://www.bleepingcomputer.com/news/security/wsl2-now-supports-localhost-connections-from-windows-10-apps/)
 
 
 ### Step 2 - Prepare $HOME directory
 
 ```
 $ cd ~
+$ mkdir gutentags www
 $ git clone git@github.com:antaed/neovim_config.git .config/nvim
+$ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
 ### Step 3 - Install plugins
 
 * `:PlugInstall`
-* `:CocInstall ...`
+* `:CocInstall {extensions}`
 
 
 ### Step 4 - Set Neovim as git mergetool
