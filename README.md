@@ -26,6 +26,7 @@ This repository contains my Neovim configuration process for a new computer, it 
 * `sudo apt install neovim`
 * `sudo apt install ripgrep`
 * `sudo apt install universal-ctags`
+* [nodejs](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2)
 * [LAMP](https://www.how2shout.com/how-to/how-to-install-apache-mysql-php-phpmyadmin-on-windows-10-wsl.html)
 * [localhost](https://www.bleepingcomputer.com/news/security/wsl2-now-supports-localhost-connections-from-windows-10-apps/)
 
@@ -35,7 +36,7 @@ This repository contains my Neovim configuration process for a new computer, it 
 ```
 $ cd ~
 $ mkdir gutentags www
-$ git clone git@github.com:antaed/neovim_config.git .config/nvim
+$ git clone https://github.com/antaed/neovim_config .config/nvim
 $ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
@@ -43,7 +44,7 @@ $ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plu
 ### Step 3 - Install plugins
 
 * `:PlugInstall`
-* `:CocInstall {extensions}`
+* `:CocInstall {coc-* extensions}`
 
 
 ### Step 4 - Set Neovim as git mergetool
