@@ -26,9 +26,12 @@ This repository contains my Neovim configuration process for a new computer, it 
 * `sudo apt install neovim`
 * `sudo apt install ripgrep`
 * `sudo apt install universal-ctags`
+* `sudo apt install make`
+* `sudo apt install p7zip-full p7zip-rar`
+* `sudo apt install subversion`
 * [nodejs](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2)
-* [LAMP](https://www.how2shout.com/how-to/how-to-install-apache-mysql-php-phpmyadmin-on-windows-10-wsl.html)
-* [localhost](https://www.bleepingcomputer.com/news/security/wsl2-now-supports-localhost-connections-from-windows-10-apps/)
+* [golang](https://github.com/golang/go/wiki/Ubuntu)
+* [LAMP](https://www.linuxbabe.com/ubuntu/install-lamp-stack-ubuntu-20-04-server-desktop)
 
 
 ### Step 2 - Prepare $HOME directory
@@ -60,6 +63,7 @@ $ git config --global mergetool.keepBackup false
 
 * check *~/.config/* permissions
 * open files that won't load with Neovim and run `:w ++ff=unix`
+* [localhost not working](https://www.bleepingcomputer.com/news/security/wsl2-now-supports-localhost-connections-from-windows-10-apps/)
 
 <br/>
 

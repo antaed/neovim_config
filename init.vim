@@ -515,6 +515,7 @@ set hidden
 set signcolumn=yes
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
+let g:coc_node_path = '/home/antaed/.nvm/versions/node/v12.16.3/bin/node'
 " Correct php variable
 autocmd FileType php setl iskeyword+=$
 autocmd! Completedone * if pumvisible() == 0 | pclose | endif
