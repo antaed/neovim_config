@@ -136,8 +136,7 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
 " Set default working directory
-tcd ~/www/
-
+" tcd ~/www/
 
 
 
@@ -715,7 +714,7 @@ com! DiffSaved call s:DiffWithSaved()
 
 " Set working directory to project root
 function! SetProject() abort
-    let path = '~/www/'
+    let path = '/mnt/c/xampp/htdocs/'
     let projects = []
     let ignore = ['_builder', 'dashboard', 'fpdf', 'git', 'img', 'php', 'php_directories', 'php_gallery', 'php_tutorial', 'sigs', 'webalizer', 'xampp']
     let dir = globpath(path, '*', 0, 1)
