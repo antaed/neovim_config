@@ -7,5 +7,7 @@
 !.gitignore
 !README.md
 !coc-settings.json
-!gvimrc
+!init.vim
+!ctrlpignore
+!diffwrap.sh
 
