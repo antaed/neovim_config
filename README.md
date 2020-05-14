@@ -21,6 +21,8 @@ This repository contains my Neovim configuration process for a new computer, it 
 * Neovim via Chocolatey (for [clipboard integration](https://github.com/neovim/neovim/wiki/FAQ#where-should-i-put-my-config-vimrc))
 * AutoHotKey
 * M+ 1mn font
+* execute ps1 file in PowerShell (add new entry to Windows Explorer context menu)
+* copy neovim-wsl.exe to home directory (set nvim as default editor)
 
 **Ubuntu**
 * `sudo apt install neovim`
@@ -29,6 +31,8 @@ This repository contains my Neovim configuration process for a new computer, it 
 * `sudo apt install make`
 * `sudo apt install p7zip-full p7zip-rar`
 * `sudo apt install subversion`
+* `sudo apt install fd`
+* [fd config](https://github.com/sharkdp/fd#using-fd-with-fzf)
 * [nodejs](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2)
 * [golang](https://github.com/golang/go/wiki/Ubuntu)
 * [LAMP](https://www.linuxbabe.com/ubuntu/install-lamp-stack-ubuntu-20-04-server-desktop)

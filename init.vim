@@ -6,7 +6,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ' },
+let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ', 't': '  T' },
             \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename' ], [ 'cocerror' ], [ 'cocwarn' ], [ 'cochint' ], [ 'cocinfo' ] ] }, 
             \ 'inactive': { 'left': [ [ 'mode' ], [ 'modified' ], [ 'filename' ] ] }, 'subseparator': { 'left': '', 'right':'' }, 
             \ 'component_function': { 'modified': 'CustomModified' },
@@ -362,9 +362,9 @@ nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>
 " HL on double click
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>' <bar> :set hls<cr>
 
-" CtrlP word under cursor
-nmap <F7> :CtrlP<CR><C-\>w
-vmap <F7> y:CtrlP<CR><C-\>c
+" FZF word under cursor
+nmap <silent><F7> :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+vmap <silent><F7> y:call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 
 " Switch projects
 nnoremap <F2> :call SetProject()<CR>
@@ -379,9 +379,10 @@ nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.v
 " Toggle colorscheme
 nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn:h12:cDEFAULT\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h12:cDEFAULT\<cr>"
 
-xnoremap <C-c> "+y
-xnoremap <C-v> "+p
-nnoremap <C-v> "+p
+" FZF mappings
+nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
+nnoremap <silent> <C-p> :History<CR>
+nnoremap <silent> <C-g> :Rg<CR>
 
 
 
@@ -390,7 +391,6 @@ nnoremap <C-v> "+p
 call plug#begin(stdpath('data').'/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls
 Plug 'tpope/vim-vinegar'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -400,7 +400,6 @@ Plug 'godlygeek/tabular'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/CSSMinister'
 Plug 'tomtom/tcomment_vim'
-Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
@@ -411,9 +410,10 @@ Plug 'junegunn/vim-slash'
 Plug 'tpope/vim-abolish'
 Plug 'machakann/vim-sandwich'
 Plug 'whiteinge/diffconflicts'
-Plug 'RRethy/vim-hexokinase', {'do': 'make hexokinase'}
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'StanAngeloff/php.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'xolox/vim-session', {'on': 'OpenSession'}
 Plug 'xolox/vim-misc', {'on': 'OpenSession'}
 " Plug 'chrisbra/unicode.vim', {'type': 'opt'}
@@ -422,54 +422,54 @@ Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 call plug#end()
 
 
-" Set ctrlp working directory to cwd
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-" :help ctrlp-commands-extensions
-" let g:ctrlp_extensions = ['dir', 'bookmarkdir']
-
-" Use ctrlp with ripgrep
-if executable('rg')
-    let g:ctrlp_user_command = {
-    \ 'types': { 1: ['.git', 'cd %s && git ls-files --exclude-from=ctrlpignore -i'] },
-    \ 'fallback': 'rg --files %s --color=never -g "!*.min.*" -g "!*.{map,jpeg,jpg,png,gif,ico,svg,eot,ttf,woff,woff2,otf,pdf,sql,gz,zip,mp4,ogg}" -g "!**/{db,docs,fonts,images,attachments,cache,ean13,plugins,vendor,xlsx_examples,video}/*"' }
-    let g:ctrlp_use_caching = 0
-    let g:ctrlp_switch_buffer = 'et'
-    set grepprg=rg\ --color=never
-endif
-
-let g:ctrlp_cache_dir = '~/.cache/ctrlp'
-
-" Open multiple files
-let g:ctrlp_open_multiple_files = 'i'
-
-" custom prompt mappings
-let g:ctrlp_prompt_mappings = {
-    \ 'ToggleType(1)': ['<c-b>', '<c-down>', '<c-h>'],
-    \ 'ToggleType(-1)': ['<c-f>', '<c-up>', '<c-l>'],
-    \ 'PrtCurLeft()': ['<left>', '<c-^>'],
-    \ 'PrtCurRight()':['<right>'],
-\}
-" custom status line
-let g:ctrlp_status_func = {
-    \ 'main': 'CtrlP_Statusline_1',
-    \ 'prog': 'CtrlP_Statusline_2',
-    \ }
-function! CtrlP_Statusline_1(...)
-    let prev = '  %#StatusLine#<%*'
-    let item = '%#Search# '.toupper(a:5).' %*'
-    let next = '%#StatusLine#>%* '
-    let dir  = ' %=%<%#StatusLineNC#'.getcwd().'%* '
-    return prev.item.next.dir
+"FZF Config
+let g:i = 0
+let g:fzf_preview_window = ''
+autocmd! FileType fzf call FzfOptions()
+function! FzfOptions()
+    set laststatus=0 noshowmode noruler
+    autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+    tnoremap <buffer> <esc> <c-c>
+    tnoremap <buffer><silent> <C-l> :<C-\><C-n>:close<CR>:sleep 100m<CR>:<C-u>call FzfToggler(g:i, 0)<CR>
+    tnoremap <buffer><silent> <C-h> :<C-\><C-n>:close<CR>:sleep 100m<CR>:<C-u>call FzfToggler(g:i, 1)<CR>
 endfunction
-function! CtrlP_Statusline_2(...)
-    let len = '%#StatusLine# '.a:1.' %*'
-    let dir = ' %=%<%#StatusLineNC# '.getcwd().' %*'
-    return len.dir
+function! FzfToggler(i, j)
+    let modes = ['Files', 'History']
+    if (a:i >= 0 && a:i < len(modes)-1)
+        let g:i = a:i + (a:j==0 ? 1 : -1)
+    else
+        let g:i = 0
+    endif
+    exe ':' . modes[g:i]
 endfunction
-" Start CtrlP in MRU mode
-autocmd BufAdd,BufDelete * nnoremap <expr> <C-p> len(getbufinfo({'buflisted':1}))>1 ? ":CtrlPBuffer\<cr>" : ":CtrlP\<cr>"
+" floating window
+let $FZF_DEFAULT_OPTS='--layout=reverse  --margin=1,4'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+  let height = float2nr(&lines * 0.6)
+  let width = float2nr(&columns * 0.6)
+  let horizontal = float2nr((&columns - width) / 2)
+  let vertical = float2nr((&lines - height) / 2)
+  let opts = { 'relative': 'editor', 'row': vertical, 'col': horizontal, 'width': width, 'height': height, 'style': 'minimal' }
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+let g:fzf_colors = { 
+  \ 'fg':      ['fg', 'Ignore'],
+  \ 'fg+':     ['fg', 'Ignore'],
+  \ 'bg':      ['bg', 'PMenu'],
+  \ 'border':  ['bg', 'PMenu'],
+  \ 'gutter':  ['bg', 'PMenu'],
+  \ 'hl':      ['fg', 'WildMenu'],
+  \ 'prompt':  ['fg', 'WildMenu'],
+  \ 'marker':  ['fg', 'WildMenu'],
+  \ 'header':  ['fg', 'WildMenu'],
+  \ 'bg+':     ['fg', 'Cursor'],
+  \ 'pointer': ['fg', 'Cursor'],
+  \ 'info':    ['fg', 'Comment'],
+  \ 'spinner': ['fg', 'Comment'],
+  \ 'hl+':     ['fg', 'Search'] }
 
 " Session management
 let g:session_autoload = "no"
@@ -490,9 +490,6 @@ function! GetPwd(path) abort
 endfunction
 let g:gutentags_project_root_finder='GetPwd'
 let g:gutentags_add_default_project_roots=0
-
-" Rg config
-nnoremap <Leader>/ :Rg<Space>
 
 " Save Renamer buffer with :w
 let g:RenamerSupportColonWToRename = 1
@@ -530,12 +527,6 @@ function! s:check_back_space() abort
 endfunction
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Hexokinase
-" let g:Hexokinase_v2 = 0
-" let g:Hexokinase_signIcon = '■'
-" autocmd FileType css silent! HexokinaseToggle
-" autocmd FileType vim silent! HexokinaseToggle
 
 " Vim-Sandwich - enable vim-surround mappings
 runtime macros/sandwich/keymap/surround.vim

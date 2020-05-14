@@ -1,4 +1,4 @@
-let s:p = { 'normal': {}, 'command': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {} }
+let s:p = { 'normal': {}, 'command': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'terminal': {}, 'visual': {}, 'tabline': {} }
 
 let s:black = [ '#000000', '0'   ] " #000000
 let s:dark1 = [ '#233146', '232' ] " #233146
@@ -22,12 +22,14 @@ let s:p.command.left    = [ [ s:white , s:blue0 ] , [ s:blue0 , s:white ] , [ s:
 let s:p.insert.left     = [ [ s:fluor , s:black ] , [ s:black , s:white ] , [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
 let s:p.visual.left     = [ [ s:white , s:turqo ] , [ s:turqo , s:white ] , [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
 let s:p.replace.left    = [ [ s:white , s:blue0 ] , [ s:blue0 , s:white ] , [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
+let s:p.terminal.left   = [ [ s:white , s:blue0 ] , [ s:blue0 , s:white ] , [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
 let s:p.inactive.left   = [ [ s:white , s:lite2 ] , [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
 let s:p.normal.right    = [ [ s:mint0 , s:white ] , [ s:mint0 , s:white ] ]
 let s:p.command.right   = [ [ s:blue0 , s:white ] , [ s:blue0 , s:white ] ]
 let s:p.insert.right    = [ [ s:black , s:white ] , [ s:black , s:white ] ]
 let s:p.visual.right    = [ [ s:turqo , s:white ] , [ s:turqo , s:white ] ]
 let s:p.replace.right   = [ [ s:blue0 , s:white ] , [ s:blue0 , s:white ] ]
+let s:p.terminal.right  = [ [ s:blue0 , s:white ] , [ s:blue0 , s:white ] ]
 let s:p.inactive.right  = [ [ s:neutr , s:white ] , [ s:neutr , s:white ] ]
 let s:p.normal.middle   = [ [ s:neutr , s:white ] ]
 let s:p.command.middle  = [ [ s:neutr , s:white ] ]
