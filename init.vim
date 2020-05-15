@@ -384,12 +384,15 @@ nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <C-p> :History<CR>
 nnoremap <silent> <C-g> :Rg<CR>
 
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 
 
 " PLUGINS --------------------------------------------------------------------
 
 call plug#begin(stdpath('data').'/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls coc-vimlsp
 Plug 'tpope/vim-vinegar'
 Plug 'itchyny/lightline.vim'
 Plug 'marcweber/vim-addon-mw-utils'
@@ -434,11 +437,11 @@ function! FzfOptions()
     tnoremap <buffer><silent> <C-h> :<C-\><C-n>:close<CR>:sleep 100m<CR>:<C-u>call FzfToggler(g:i, 1)<CR>
 endfunction
 function! FzfToggler(i, j)
-    let modes = ['Files', 'History']
-    if (a:i >= 0 && a:i < len(modes)-1)
-        let g:i = a:i + (a:j==0 ? 1 : -1)
+    let modes = ['Files', 'Buffers', 'History']
+    if (a:j==0)
+        let g:i = a:i >= 0 && a:i < len(modes)-1 ? a:i + 1 : 0
     else
-        let g:i = 0
+        let g:i = a:i > 0 && a:i <= len(modes) ? a:i - 1 : len(modes) - 1
     endif
     exe ':' . modes[g:i]
 endfunction
