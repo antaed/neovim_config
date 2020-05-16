@@ -1,5 +1,5 @@
 " GENERAL SETUP ------------------------------------------------
-let g:python_host_prog = '/usr/bin/python2.7'
+let g:python_host_prog  = '/usr/bin/python2.7'
 let g:python3_host_prog = '/usr/bin/python3.8'
 
 if (has("termguicolors"))
@@ -131,9 +131,10 @@ filetype plugin indent on
 
 " Netrw configuration
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 2
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+let g:netrw_ftp_cmd="ftp -p"
 
 " Set default working directory
 " tcd ~/www/
@@ -381,11 +382,15 @@ nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_li
 
 " FZF mappings
 nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
-nnoremap <silent> <C-p> :History<CR>
-nnoremap <silent> <C-g> :Rg<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <C-t> :History<CR>
+nnoremap <silent> <C-g> :RG<CR>
 
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+" Fix switching to prev buffer
+noremap <C-p> <C-^>
 
 
 
@@ -446,33 +451,46 @@ function! FzfToggler(i, j)
     exe ':' . modes[g:i]
 endfunction
 " floating window
-let $FZF_DEFAULT_OPTS='--layout=reverse  --margin=1,4'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-function! FloatingFZF()
+let $FZF_DEFAULT_OPTS='--layout=reverse  --margin=1,3'
+let g:fzf_layout = { 'window': 'call FloatingFZF(0.6, 0.6)' }
+function! FloatingFZF(w,h)
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
-  let height = float2nr(&lines * 0.6)
-  let width = float2nr(&columns * 0.6)
+  let width = float2nr(&columns * a:w)
+  let height = float2nr(&lines * a:h)
   let horizontal = float2nr((&columns - width) / 2)
   let vertical = float2nr((&lines - height) / 2)
   let opts = { 'relative': 'editor', 'row': vertical, 'col': horizontal, 'width': width, 'height': height, 'style': 'minimal' }
   call nvim_open_win(buf, v:true, opts)
 endfunction
 let g:fzf_colors = { 
-  \ 'fg':      ['fg', 'Ignore'],
-  \ 'fg+':     ['fg', 'Ignore'],
-  \ 'bg':      ['bg', 'PMenu'],
-  \ 'border':  ['bg', 'PMenu'],
-  \ 'gutter':  ['bg', 'PMenu'],
-  \ 'hl':      ['fg', 'WildMenu'],
-  \ 'prompt':  ['fg', 'WildMenu'],
-  \ 'marker':  ['fg', 'WildMenu'],
-  \ 'header':  ['fg', 'WildMenu'],
-  \ 'bg+':     ['fg', 'Cursor'],
-  \ 'pointer': ['fg', 'Cursor'],
-  \ 'info':    ['fg', 'Comment'],
-  \ 'spinner': ['fg', 'Comment'],
-  \ 'hl+':     ['fg', 'Search'] }
+  \ 'fg':         ['fg', 'Ignore'],
+  \ 'fg+':        ['fg', 'Ignore'],
+  \ 'bg':         ['bg', 'PMenu'],
+  \ 'border':     ['bg', 'PMenu'],
+  \ 'gutter':     ['bg', 'PMenu'],
+  \ 'hl':         ['fg', 'WildMenu'],
+  \ 'prompt':     ['fg', 'WildMenu'],
+  \ 'marker':     ['fg', 'WildMenu'],
+  \ 'header':     ['fg', 'WildMenu'],
+  \ 'preview-bg': ['bg', 'WildMenu'],
+  \ 'bg+':        ['fg', 'Cursor'],
+  \ 'pointer':    ['fg', 'Cursor'],
+  \ 'info':       ['fg', 'Comment'],
+  \ 'spinner':    ['fg', 'Comment'],
+  \ 'preview-fg': ['fg', 'Normal'],
+  \ 'hl+':        ['fg', 'Search'] }
+" FZF Rg config
+function! RipgrepFzf(query)
+  let g:fzf_layout = { 'window': 'call FloatingFZF(0.8, 0.8)' }
+  let command_fmt = "rg --column --line-number --no-heading --color=always --colors 'line:none' --colors 'path:none' --colors 'match:none' --colors match:'fg:".(g:colors_name=='antaed' ? 'red' : 'black')."' --smart-case -- %s || true"
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command, '--preview-window', 'noborder']}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec))
+  let g:fzf_layout = { 'window': 'call FloatingFZF(0.6, 0.6)' }
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>)
 
 " Session management
 let g:session_autoload = "no"
