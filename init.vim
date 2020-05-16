@@ -6,7 +6,10 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-let g:lightline = { 'colorscheme': 'antaed_light', 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ', 't': '  T' },
+colorscheme antaed
+let g:colors_name_negative = g:colors_name=='antaed' ? 'antaed_light' : 'antaed'
+
+let g:lightline = { 'colorscheme': g:colors_name, 'mode_map': { 'n': '  N', 'c': '  C', 'i': '  I', 'v':'  V', 'V': ' VL', "\<C-v>": ' VB', 'R': '  R', '?': '   ', 't': '  T' },
             \ 'active':   { 'left': [ [ 'mode' ], [ 'modified', 'readonly' ], [ 'filename' ], [ 'cocerror' ], [ 'cocwarn' ], [ 'cochint' ], [ 'cocinfo' ] ] }, 
             \ 'inactive': { 'left': [ [ 'mode' ], [ 'modified' ], [ 'filename' ] ] }, 'subseparator': { 'left': '', 'right':'' }, 
             \ 'component_function': { 'modified': 'CustomModified' },
@@ -26,7 +29,7 @@ augroup lightline-events
     autocmd ColorScheme * call s:onColorSchemeChange(expand("<amatch>"))
     autocmd User CocDiagnosticChange call lightline#update()
 augroup END
-let s:colour_scheme_map = {'antaed': 'antaed_light'}
+let s:colour_scheme_map = {g:colors_name_negative : g:colors_name}
 function! s:onColorSchemeChange(scheme)
     " Try a scheme provided already
     execute 'runtime autoload/lightline/colorscheme/'.a:scheme.'.vim'
@@ -78,18 +81,6 @@ function! LightLineCocInfo() abort
     return s:LightlineCodDiagnostics('I:','info')
 endfunction
 
-" toggle colorscheme with goyo
-" function! s:goyo_enter()
-"     colorscheme antaed_light
-"     silent! call lightline#disable()
-" endfunction
-" function! s:goyo_leave()
-"     colorscheme antaed
-" endfunction
-" autocmd! User GoyoEnter nested call <SID>goyo_enter()
-" autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-colorscheme antaed_light
 if !exists("g:syntax_on")
     syntax enable
 endif
@@ -104,7 +95,6 @@ if has("gui_running")
   elseif has("x11")
     set guifont=-*-consolas-medium-r-normal-*-*-180-*-*-m-*-*
   else
-    " set guifont=Consolas:h11:cDEFAULT
     set guifont=M+\ 1mn\ light:h12:cDEFAULT
   endif
 endif
@@ -147,10 +137,10 @@ let g:netrw_ftp_cmd="ftp -p"
 map <Space> <Leader>
 
 " Open vimrc in new tab
-nmap <leader>g :tabedit ~/.config/nvim/init.vim<CR>
+nmap <leader>g :tabedit $MYVIMRC<CR>
 
 " Source gvimrc
-nmap <leader>sg :source ~/.config/nvim/init.vim<CR>
+nmap <leader>sg :source $MYVIMRC<CR>
 
 " Correct pasting
 nnoremap <leader>p p`[v`]=
@@ -378,7 +368,7 @@ vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> g:colors_name=='antaed' ? ":colorscheme antaed_light".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn:h12:cDEFAULT\<cr>" : ":colorscheme antaed".( exists('#goyo') ? "\<bar> :silent! call lightline#disable()" : "" )." \<bar> :set guifont=M+\\ 1mn\\ light:h12:cDEFAULT\<cr>"
+nnoremap <silent> <expr> <F10> ":call ToggleColorscheme()<CR>: source $MYVIMRC<CR>"
 
 " FZF mappings
 nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
@@ -589,6 +579,15 @@ let g:sandwich#recipes += [
 
 
 " USEFUL SCRIPTS --------------------------------------------------------------------
+
+" Toggle color scheme
+function! ToggleColorscheme() abort
+    exe ":colorscheme ".g:colors_name_negative
+    if  exists('#goyo') 
+        exe "silent! call lightline#disable()"
+    endif
+    exe ":e $MYVIMRC" | exe "/^colorscheme antaed" | exe "normal! 0eeciW".g:colors_name_negative | exe ":w\|bd"
+endfunction
 
 " Execute macro over visual range
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
