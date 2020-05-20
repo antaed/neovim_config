@@ -24,10 +24,8 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'xolox/vim-session', {'on': 'OpenSession'}
-Plug 'xolox/vim-misc', {'on': 'OpenSession'}
-" Plug 'chrisbra/unicode.vim', {'type': 'opt'}
-" Plug 'gerw/vim-HiLinkTrace', {'type': 'opt'}
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 call plug#end()
 

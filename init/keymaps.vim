@@ -247,3 +247,6 @@ tnoremap <Esc> <C-\><C-n>
 " Fix switching to prev buffer
 noremap <C-p> <C-^>
 
+" Floaterm
+nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>

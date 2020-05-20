@@ -36,3 +36,5 @@ source ~/.config/nvim/init/theme.vim
 source ~/.config/nvim/init/keymaps.vim
 source ~/.config/nvim/init/plugins.vim
 source ~/.config/nvim/init/scripts.vim
+
+lua require'plug-colorizer'

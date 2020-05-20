@@ -384,6 +384,11 @@ call <sid>hi("CocWarningHighlight"   , ""      , "" , "undercurl")
 call <sid>hi("CocInfoHighlight"      , ""      , "" , "undercurl")
 call <sid>hi("CocHintHighlight"      , ""      , "" , "undercurl")
 
+" Floaterm
+call <sid>hi("Floaterm"       , ""      , s:black , "NONE")
+call <sid>hi("FloatermNC"     , ""      , s:black , "NONE")
+call <sid>hi("FloatermBorder" , s:black , s:black , "NONE")
+
 " Remove functions
 delf <sid>hi
 delf <sid>gui
