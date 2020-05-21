@@ -141,35 +141,3 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
-" Set working directory to project root
-function! SetProject() abort
-    let path = '/mnt/c/xampp/htdocs/'
-    let projects = []
-    let ignore = ['_builder', 'dashboard', 'fpdf', 'git', 'img', 'php', 'php_directories', 'php_gallery', 'php_tutorial', 'sigs', 'webalizer', 'xampp']
-    let dir = globpath(path, '*', 0, 1)
-    call filter(dir, 'isdirectory(v:val)')
-    for i in dir
-        if (index(ignore, fnamemodify(i, ':p:h:t'))<0)
-            call add(projects, fnamemodify(i, ':p:h:t'))
-        endif
-    endfor
-    let options = ['']
-    for i in projects
-        let n = index(projects, i)+1
-        let option = ' '.(n<10 ? ' '.n : n).'. '.i
-        call add(options, option)
-    endfor
-    call inputsave()
-    call add(options, '')
-    let opt = inputlist(options)
-    call inputrestore()
-    if opt>0 && opt<=len(projects)
-        exe ":tcd ".path.projects[opt-1]
-        normal 
-        echon "Working directory set to: "
-        echohl MoreMsg | echon projects[opt-1] | echohl None
-    else
-        normal 
-        echohl MoreMsg | echom "Nothing changed" | echohl None
-    endif
-endfunction

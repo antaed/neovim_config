@@ -210,7 +210,7 @@ nnoremap <F3> i<C-w><C-c>
 
 " Jump to next error
 nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
-nmap <silent> <S-F4> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <F16> <Plug>(coc-diagnostic-prev-error)
 
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
@@ -223,7 +223,8 @@ nmap <silent><F7> :call fzf#vim#files('.', {'options':'--query '.expand('<cword>
 vmap <silent><F7> y:call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 
 " Switch projects
-nnoremap <F2> :call SetProject()<CR>
+nnoremap <F2> :Cd<CR>
+nnoremap <F14> :Ftp<CR>
 
 " Get PHP Variables
 nnoremap <leader>pv /\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
@@ -233,7 +234,7 @@ vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> exists('#goyo') ? ":call ToggleColorscheme()<CR>:source $MYVIMRC<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()<CR>:source $MYVIMRC<CR>"
+nnoremap <silent> <expr> <F10> exists('#goyo') ? ":call ToggleColorscheme()\<CR>:source $MYVIMRC\<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()\<CR>:source $MYVIMRC\<CR>"
 
 " FZF mappings
 nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
@@ -250,3 +251,4 @@ noremap <C-p> <C-^>
 " Floaterm
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+

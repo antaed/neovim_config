@@ -33,8 +33,9 @@ let g:netrw_ftp_cmd="ftp -p"
 
 source ~/.config/nvim/init/toggler.vim
 source ~/.config/nvim/init/theme.vim
-source ~/.config/nvim/init/keymaps.vim
 source ~/.config/nvim/init/plugins.vim
 source ~/.config/nvim/init/scripts.vim
+source ~/.config/nvim/init/keymaps.vim
+source ~/.config/nvim/init/projects.vim
 
 lua require'plug-colorizer'
