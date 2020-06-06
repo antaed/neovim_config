@@ -93,3 +93,7 @@ if has("gui_running")
     set guifont=M+\ 1mn\ light:h12:cDEFAULT
   endif
 endif
+
+" Open help files in new tab
+cnoreabbrev <expr> help ((getcmdtype() is# ':'    && getcmdline() is# 'help')?('tab help'):('help'))
+cnoreabbrev <expr> h ((getcmdtype() is# ':'    && getcmdline() is# 'h')?('tab help'):('h'))

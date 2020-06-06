@@ -2,7 +2,7 @@
 map <Space> <Leader>
 
 " Open vimrc in new tab
-nmap <silent><expr> <leader>g ":tabnew ~/.config/nvim/init\<CR>"
+nmap <silent> <leader>g :tabnew ~/.config/nvim/init/keymaps.vim <bar> :Vex<CR>
 
 " Source gvimrc
 nmap <leader>sg :source $MYVIMRC<CR>
@@ -20,7 +20,7 @@ endif
 nnoremap <silent> <leader><space> :let @/ = expand("<cword>") <bar> :set invhlsearch<cr>
 
 " Remap buffer motion
-nnoremap <silent> <C-Down> :bnext<CR>
+nnoremap <silent> <C-Down> :bnext<C colorscheme antaedR
 nnoremap <silent> <C-Up> :bprevious<CR>
 nnoremap <silent> <C-Left> :tabprevious<CR>
 nnoremap <silent> <C-Right> :tabnext<CR>
@@ -230,7 +230,7 @@ nnoremap <F14> :Ftp<CR>
 nnoremap <leader>pv /\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
 vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
 
-" Activate Goyo
+" Activate colorscheme antaed 
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme

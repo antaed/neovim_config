@@ -64,5 +64,5 @@ let g:sites = [
     \]
 command! -nargs=* -complete=dir Ftp call fzf#run(fzf#wrap({'source': g:sites, 'sink': function('<sid>ftpopen'), 'options': '--prompt "Sites> "'}))
 function! s:ftpopen(args)
-    execute "e ftp://".a:args."/"
+    execute "Vex ftp://".a:args."/"
 endfunction

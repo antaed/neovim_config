@@ -22,9 +22,10 @@ scriptencoding utf-8
 filetype plugin indent on
 
 " Netrw configuration
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2
+let g:netrw_liststyle = 0
+let g:netrw_browse_split = 4
 let g:netrw_altv = 1
+let g:netrw_preview = 1
 let g:netrw_winsize = 25
 let g:netrw_ftp_cmd="ftp -p"
 
