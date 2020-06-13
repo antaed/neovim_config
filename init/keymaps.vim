@@ -234,7 +234,7 @@ vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize
 nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> exists('#goyo') ? ":call ToggleColorscheme()\<CR>:source $MYVIMRC\<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()\<CR>:source $MYVIMRC\<CR>"
+nnoremap <silent> <expr> <F10> exists('#goyo') ? ":call ToggleColorscheme()\<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()\<CR>"
 
 " FZF mappings
 nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>

@@ -5,6 +5,7 @@ function! ToggleColorscheme() abort
         exe "silent! call lightline#disable()"
     endif
     exe ":e ~/.config/nvim/init/toggler.vim" | exe "normal! Di colorscheme ".g:colors_name_negative | silent exe ":w\|bd"
+    silent exe ":source ~/.config/nvim/init/toggler.vim" | silent exe ":source ~/.config/nvim/init/theme.vim"
 endfunction
 
 " Execute macro over visual range
