@@ -1,11 +1,14 @@
 " Toggle color scheme
 function! ToggleColorscheme() abort
+    let toggler_path = '~/.config/nvim/init/toggler.vim'
     exe ":colorscheme ".g:colors_name_negative
     if  exists('#goyo') 
-        exe "silent! call lightline#disable()"
+        exe "silent! call lightline#disable()" | exe ":e ".toggler_path 
+    else 
+        exe ":tabe ".toggler_path 
     endif
-    exe ":e ~/.config/nvim/init/toggler.vim" | exe "normal! Di colorscheme ".g:colors_name_negative | silent exe ":w\|bd"
-    silent exe ":source ~/.config/nvim/init/toggler.vim" | silent exe ":source ~/.config/nvim/init/theme.vim"
+    exe "normal! Di colorscheme ".g:colors_name_negative | silent exe ":w\|bd"
+    silent exe ":source ".toggler_path | silent exe ":source ~/.config/nvim/init/theme.vim"
 endfunction
 
 " Execute macro over visual range
