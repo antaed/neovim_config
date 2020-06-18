@@ -154,10 +154,31 @@ snippet debug
 	echo '<pre>'; print_r($0); die();
 # if is me
 snippet ifme
-	if ((!in_array(HOST_NAME, array('localhost', 'dev.erp2.ro')) || !\$this->registry->authUser) || \$this->registry->authUser->username=='andrei.orias' || (\$this->registry->authUser->username=='danitoader80' && \$_SERVER['REMOTE_ADDR']=='192.168.1.108')) { 
+	if ( in_array(\$this->registry->authUser->username,array('andrei.orias','danitoader80','CBMS-Tester')) && \$_SERVER['REMOTE_ADDR']=='89.137.5.19' ) { 
 	    $0
 	}
 # new class
 snippet model
 	\$model$1 = new $1 (\$this->registry);
 	$0
+# client name
+snippet client
+	if (\$this->registry->client_name=='$1') {
+
+	    $0
+	}
+# model get
+snippet mget
+	\$$1->get$2(array('$3'=>$0));
+# query get
+snippet qget
+	\$this->get$1BySql("$0");
+# this db query
+snippet query
+	\$this->db->query("$0");
+# this tablename
+snippet thistab
+	\`".\$this->tableName()."\` $0
+# this db prefix
+snippet alttab
+	\`".\$this->dbPrefix."$1\` $0
