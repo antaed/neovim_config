@@ -68,25 +68,25 @@ command! -range=% RemoveDiacritics call s:RemoveDiacritics(<line1>,<line2>)
 
 
 " Gutentags set project roots
-let g:gutentags_enabled_dirs = ['~/www']
-let g:gutentags_init_user_func = 'CheckEnabledDirs'
-function! CheckEnabledDirs(file) abort
-    let file_path = fnamemodify(a:file, ':p:h')
-    try
-        let gutentags_root = gutentags#get_project_root(file_path)
-        if filereadable(gutentags_root . '/_withtags')
-            return 1
-        endif
-    catch
-    endtry
-    for enabled_dir in g:gutentags_enabled_dirs
-        let enabled_path = fnamemodify(enabled_dir, ':p:h')
-        if match(file_path, enabled_path) == 0
-            return 1
-        endif
-    endfor
-    return 0
-endfunction
+" let g:gutentags_enabled_dirs = ['~/www']
+" let g:gutentags_init_user_func = 'CheckEnabledDirs'
+" function! CheckEnabledDirs(file) abort
+"     let file_path = fnamemodify(a:file, ':p:h')
+"     try
+"         let gutentags_root = gutentags#get_project_root(file_path)
+"         if filereadable(gutentags_root . '/_withtags')
+"             return 1
+"         endif
+"     catch
+"     endtry
+"     for enabled_dir in g:gutentags_enabled_dirs
+"         let enabled_path = fnamemodify(enabled_dir, ':p:h')
+"         if match(file_path, enabled_path) == 0
+"             return 1
+"         endif
+"     endfor
+"     return 0
+" endfunction
 
 
 " Capture ex command output

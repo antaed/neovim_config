@@ -12,7 +12,7 @@ Plug 'vim-scripts/CSSMinister'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'qpkorr/vim-renamer'
@@ -105,12 +105,12 @@ au BufRead,BufNewFile *.html set ft=html.php
 
 " Gutentags config
 " let g:gutentags_ctags_executable = '~/ctags/ctags.exe'
-let g:gutentags_cache_dir = '~/gutentags/'
-function! GetPwd(path) abort
-    return getcwd()
-endfunction
-let g:gutentags_project_root_finder='GetPwd'
-let g:gutentags_add_default_project_roots=0
+" let g:gutentags_cache_dir = '~/gutentags/'
+" function! GetPwd(path) abort
+"     return getcwd()
+" endfunction
+" let g:gutentags_project_root_finder='GetPwd'
+" let g:gutentags_add_default_project_roots=0
 
 " Save Renamer buffer with :w
 let g:RenamerSupportColonWToRename = 1

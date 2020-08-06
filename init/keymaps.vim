@@ -212,6 +212,12 @@ nnoremap <F3> i<C-w><C-c>
 nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
 nmap <silent> <F16> <Plug>(coc-diagnostic-prev-error)
 
+" Go To
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
 
