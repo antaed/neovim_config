@@ -154,7 +154,7 @@ snippet debug
 	echo '<pre>'; print_r($0); die();
 # if is me
 snippet ifme
-	if ( in_array(\$this->registry->authUser->username,array('andrei.orias','danitoader80','CBMS-Tester')) && \$_SERVER['REMOTE_ADDR']=='79.119.97.181' ) { 
+	if ( \$this->registry->localhost || ((in_array(\$this->registry->authUser->username,\$this->registry->devUsernames)) && in_array(\$_SERVER['REMOTE_ADDR'],\$this->registry->devIPs)) ) { 
 	    $0
 	}
 # new class
