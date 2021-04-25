@@ -1,5 +1,5 @@
 call plug#begin(stdpath('data').'/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls coc-vimlsp
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls coc-vimlsp coc-tailwindcss
 Plug 'tpope/vim-vinegar'
 Plug 'itchyny/lightline.vim'
 Plug 'marcweber/vim-addon-mw-utils'
@@ -27,6 +27,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'jwalton512/vim-blade'
+Plug 'gerw/vim-HiLinkTrace'
 call plug#end()
 
 
@@ -186,3 +188,11 @@ let g:sandwich#recipes += [
       \   {'buns': ['^\s*', '\s*$'], 'regex': 1, 'linewise': 1, 'kind': ['textobj'], 'input': ['l']},
       \ ]
 
+" Blade
+" Define some single Blade directives. This variable is used for highlighting only.
+let g:blade_custom_directives = ['datetime', 'javascript']
+" Define pairs of Blade directives. This variable is used for highlighting and indentation.
+let g:blade_custom_directives_pairs = {
+      \   'markdown': 'endmarkdown',
+      \   'cache': 'endcache',
+      \ }

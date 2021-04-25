@@ -18,3 +18,14 @@ syn cluster htmlJavaScript add=jsprop,jsword,jspct,jsop,jsphp,jsjq,jsdt
 syn region javaScript start=+<script\_[^>]*>+ keepend end=+</script\_[^>]*>+me=s-1 contains=@htmlJavaScript,htmlCssStyleComment,htmlScriptTag,@htmlPreproc,jsphp
 syn region htmlScriptTag contained start=+<script+ end=+>+ fold contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent
 hi def link htmlScriptTag htmlTag
+syn match htmlXTagName "x-\a\+\(\(-\|::\|\.\)\?\a\+\)*" contained containedin=htmlTagN
+syn region htmlXTag contained start=+<x-\a\++ end=+[/]\?>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlXTagAttr,htmlXTagAlpine containedin=htmlTag
+hi def link htmlXTag htmlTag
+hi def link htmlXTagName htmlTagName
+syn region htmlXTagAttr contained start=+\(<\|\s\+\)\zs:\a\+\s*=[\t ]*"+ end=+"+ keepend contains=htmlXTagValue
+syn region htmlXTagAlpine contained start=+\(<\|\s\+\)\zs::\a\+\s*=[\t ]*"+ end=+"+ keepend contains=htmlEventDQ
+syn region htmlXTagValue contained start=+"+ms=s+1 end=+"+me=s-1 contains=@phpClTop
+syn region htmlAlpine contained start=+\(<\|\s\+\)\zs\(x-\|@\|:\)\a\+\([.]\?\a\+\)*\s*=[\t ]*"+ end=+"+ contains=htmlEventDQ containedin=htmlTag
+hi def link htmlAlpine htmlTag
+hi def link htmlXTagAttr htmlTag
+hi def link htmlXTagAlpine htmlTag
