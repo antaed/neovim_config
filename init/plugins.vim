@@ -28,7 +28,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'jwalton512/vim-blade'
-Plug 'gerw/vim-HiLinkTrace'
+" Plug 'gerw/vim-HiLinkTrace'
 call plug#end()
 
 
@@ -190,9 +190,9 @@ let g:sandwich#recipes += [
 
 " Blade
 " Define some single Blade directives. This variable is used for highlighting only.
-let g:blade_custom_directives = ['datetime', 'javascript']
+" let g:blade_custom_directives = ['datetime', 'javascript']
 " Define pairs of Blade directives. This variable is used for highlighting and indentation.
-let g:blade_custom_directives_pairs = {
-      \   'markdown': 'endmarkdown',
-      \   'cache': 'endcache',
-      \ }
+" let g:blade_custom_directives_pairs = {
+"       \   'markdown': 'endmarkdown',
+"       \   'cache': 'endcache',
+"       \ }
