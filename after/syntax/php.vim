@@ -19,7 +19,7 @@ syn region javaScript start=+<script\_[^>]*>+ keepend end=+</script\_[^>]*>+me=s
 syn region htmlScriptTag contained start=+<script+ end=+>+ fold contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent
 hi def link htmlScriptTag htmlTag
 syn match htmlXTagName "x-\a\+\(\(-\|::\|\.\)\?\a\+\)*" contained containedin=htmlTagN
-syn region htmlXTag contained start=+<x-\a\++ end=+[/]\?>+ contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlXTagAttr,htmlXTagAlpine containedin=htmlTag
+syn region htmlXTag contained start=+<x-\a\++ end=+>+me=s-1 contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlXTagAttr,htmlXTagAlpine containedin=htmlTag
 hi def link htmlXTag htmlTag
 hi def link htmlXTagName htmlTagName
 syn region htmlXTagAttr contained start=+\(<\|\s\+\)\zs:\a\+\s*=[\t ]*"+ end=+"+ keepend contains=htmlXTagValue

@@ -28,7 +28,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'jwalton512/vim-blade'
-" Plug 'gerw/vim-HiLinkTrace'
+Plug 'gerw/vim-HiLinkTrace'
 call plug#end()
 
 
