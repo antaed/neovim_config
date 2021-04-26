@@ -102,8 +102,9 @@ let g:session_command_aliases = 1
 " SnipMate parser version
 let g:snipMate = {}
 let g:snipMate.snippet_version = 1
-" Enable php snippet in html
+" Enable php, blade snippets in html
 au BufRead,BufNewFile *.html set ft=html.php
+au BufRead,BufNewFile *.blade.php set ft=blade.php
 
 " Gutentags config
 " let g:gutentags_ctags_executable = '~/ctags/ctags.exe'

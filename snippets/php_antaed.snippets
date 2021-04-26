@@ -186,3 +186,54 @@ snippet alttab
 snippet ivar
 	".$1." $0
 
+# blade echo
+snippet bec
+	{{ \$$0 }}
+
+# blade directives
+snippet bdir
+	@$1 (\$$2)
+	$0$VISUAL
+	@end$1
+
+# blade if
+snippet bif
+	@if (\$$1) $0$VISUAL @endif
+
+# blade else(if|can)/else
+snippet bel
+	@else$1 (\$$2)
+	$3$VISUAL
+	@else
+	$0$VISUAL
+
+# blade foreach
+snippet bfe
+	@foreach (\$$1 as \$$2)
+	$0$VISUAL
+	@endforeach
+
+# blade forelse
+snippet bfel
+	@forelse (\$$1 as \$$2)
+	$3$VISUAL
+	@empty
+	$0$VISUAL
+	@endforelse
+
+# blade case
+snippet bcase
+	    @case ($1)
+		$0$VISUAL
+		    @break
+
+# blade x-tag 
+snippet xtag
+	<x-$1 $0$VISUAL />
+
+# blade x-fold
+snippet xfold
+	<x-$1>
+	$0$VISUAL
+	</x-$1>
+
