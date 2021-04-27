@@ -145,3 +145,15 @@ endfunction
 com! DiffSaved call s:DiffWithSaved()
 
 
+" Get key mappings
+function! MinExec(cmd)
+    redir @a
+    exec printf('silent %s',a:cmd)
+    redir END
+    return @a
+endfunction
+function! GetMappings()
+    let lines=MinExec('map')
+    let lines=split(lines,'\n')
+    return lines
+endfunction

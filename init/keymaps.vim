@@ -218,6 +218,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nnoremap <silent> gh :call CocActionAsync('doHover')<cr>
+
 " Compare current buffer against the file
 nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
 
@@ -247,6 +249,7 @@ nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-t> :History<CR>
 nnoremap <silent> <C-g> :RG<CR>
+nnoremap <silent> <C-m> :call fzf#run(fzf#wrap({'source': GetMappings(),'options': '-m'}))<CR>
 
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
