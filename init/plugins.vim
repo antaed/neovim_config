@@ -29,6 +29,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
 Plug 'jwalton512/vim-blade'
 Plug 'gerw/vim-HiLinkTrace'
+Plug 'lambdalisue/fern.vim'
+Plug 'antoinemadec/FixCursorHold.nvim'
 call plug#end()
 
 
@@ -197,3 +199,6 @@ let g:sandwich#recipes += [
 "       \   'markdown': 'endmarkdown',
 "       \   'cache': 'endcache',
 "       \ }
+
+" fixcursorhold config
+let g:cursorhold_updatetime = 100

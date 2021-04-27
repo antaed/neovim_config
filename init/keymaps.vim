@@ -2,7 +2,8 @@
 map <Space> <Leader>
 
 " Open vimrc in new tab
-nmap <silent> <leader>g :tabnew ~/.config/nvim/init/keymaps.vim <bar> :Vex<CR>
+" nmap <silent> <leader>g :tabnew ~/.config/nvim/init/keymaps.vim <bar> :Vex<CR>
+nmap <silent> <leader>g :tabnew ~/.config/nvim/init/keymaps.vim <bar> :Fern . -drawer -toggle<CR>
 
 " Source gvimrc
 nmap <leader>sg :source $MYVIMRC<CR>
@@ -261,3 +262,6 @@ noremap <C-p> <C-^>
 nnoremap   <silent>   <F12>   :FloatermToggle<CR>
 tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 
+
+" Fern file manager
+nmap <silent> <F8> :Fern . -drawer -toggle<CR>
