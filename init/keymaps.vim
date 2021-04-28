@@ -108,13 +108,6 @@ vnoremap <M-l> j$
 vnoremap <silent> <leader>dh J0/<?php.\{-}?><cr><esc>:call ClearAllButMatches()<cr>:noh<cr>
 vnoremap <silent> <leader>dp :s/\%V<?php.\{-}?>/string/g<cr>
 
-" Vim-Session plugin remaps
-nnoremap <silent> <F9> :packadd vim-misc <bar> :packadd vim-session <bar> :echom "Vim-Sessions added"<cr>
-nnoremap <leader>so :OpenSession
-nnoremap <leader>ss :SaveSession
-nnoremap <leader>sd :DeleteSession<CR>
-nnoremap <leader>sc :CloseSession<CR>
-
 " Delete multiple spaces between tags
 nnoremap <silent> <leader>ds vat :s/\%V\(\s\+\ze<\\|>\zs\s\+\)//g <bar> :noh<cr>gv=
 vnoremap <silent> <leader>ds :s/\%V\(\s\+\ze<\\|>\zs\s\+\)//g <bar> :noh<cr>gv=
@@ -150,13 +143,10 @@ noremap <leader>cci :s/\/\*\\|\*\///g <bar> :noh<cr>
 vnoremap <leader>cci :s/\%V\/\*\\|\*\///g <bar> :noh<cr>
 
 " Activate HiLinkTrace
-nnoremap <silent> <leader>synt :packadd vim-HiLinkTrace<cr>:HLT!<cr>
+nnoremap <silent> <leader>synt :HLT!<cr>
 
 " Increment numbers
 noremap <A-x> <C-A>
-
-" Load unicode.vim
-nnoremap <silent> <leader>dig :packadd unicode.vim<cr>
 
 " Increment multiple lines by one
 vnoremap <leader>+ 1g<C-a>

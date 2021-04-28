@@ -1,1 +1,1 @@
- colorscheme antaed 
+ colorscheme antaed_light 
