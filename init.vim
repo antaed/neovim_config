@@ -18,6 +18,7 @@ set redrawtime=10000
 set updatetime=750
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 set encoding=utf-8
+set nofixendofline
 scriptencoding utf-8
 filetype plugin indent on
 
@@ -39,4 +40,4 @@ source ~/.config/nvim/init/scripts.vim
 source ~/.config/nvim/init/keymaps.vim
 source ~/.config/nvim/init/projects.vim
 
-lua require'plug-colorizer'
+lua require 'colorizer'.setup()
