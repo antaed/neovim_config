@@ -137,7 +137,7 @@ set hidden
 set signcolumn=yes
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
-let g:coc_node_path = '/home/antaed/.nvm/versions/node/v12.16.3/bin/node'
+let g:coc_node_path = '/root/.nvm/versions/node/v16.2.0/bin/node'
 " Correct php variable
 autocmd FileType php setl iskeyword+=$
 autocmd! Completedone * if pumvisible() == 0 | pclose | endif
@@ -187,7 +187,7 @@ let g:sandwich#recipes += [
       \   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['{']},
       \   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['[']},
       \   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1, 'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'], 'action': ['delete'], 'input': ['(']},
-      \   {'buns': ['<?php\s*', '\s*?>'], 'nesting': 1, 'regex': 1, 'kind': ['textobj'], 'filetype': ['php'], 'input': ['p']},
+      \   {'buns': ['<?\(php\|=\)\?\s*', '\s*?>'], 'nesting': 1, 'regex': 1, 'kind': ['textobj'], 'filetype': ['php'], 'input': ['p']},
       \   {'buns': ['^\s*', '\s*$'], 'regex': 1, 'linewise': 1, 'kind': ['textobj'], 'input': ['l']},
       \ ]
 
