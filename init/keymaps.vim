@@ -240,7 +240,7 @@ nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-t> :History<CR>
 nnoremap <silent> <C-g> :RG<CR>
-nnoremap <silent> <C-m> :call fzf#run(fzf#wrap({'source': GetMappings(),'options': '-m'}))<CR>
+nnoremap <silent> <leader>m :call fzf#run(fzf#wrap({'source': GetMappings(),'options': '-m'}))<CR>
 
 " Exit terminal mode
 tnoremap <Esc> <C-\><C-n>
