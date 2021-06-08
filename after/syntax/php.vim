@@ -1,3 +1,6 @@
+syn clear htmlCommentPart
+syn clear htmlCommentError
+syn match htmlCommentInside "<!--\zs\_.\{-}\ze-->" contained containedin=htmlComment
 syn match jsjq "\$\(.\|(\)\@<=" contained
 syn match jsdt "\$dt\(.\|(\)\@<=" contained
 syn match jsprop "\.\zs\h\w*\ze" contained
@@ -29,3 +32,4 @@ syn region htmlAlpine contained start=+\(<\|\s\+\)\zs\(x-\|@\|:\)\a\+\([.]\?\a\+
 hi def link htmlAlpine htmlTag
 hi def link htmlXTagAttr htmlTag
 hi def link htmlXTagAlpine htmlTag
+hi def link htmlCommentInside comment

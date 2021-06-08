@@ -19,6 +19,7 @@ set updatetime=750
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 set encoding=utf-8
 set nofixendofline
+set mmp=2000
 scriptencoding utf-8
 filetype plugin indent on
 
