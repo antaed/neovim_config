@@ -1,5 +1,5 @@
 call plug#begin(stdpath('data').'/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls coc-vimlsp coc-tailwindcss
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " :CocInstall coc-css coc-html coc-json coc-tsserver coc-phpls coc-vimlsp coc-tailwindcss coc-xml
 Plug 'tpope/vim-vinegar'
 Plug 'itchyny/lightline.vim'
 Plug 'marcweber/vim-addon-mw-utils'

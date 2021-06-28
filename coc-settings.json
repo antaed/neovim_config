@@ -1,5 +1,6 @@
 {
     "suggest.noselect": false,
     "coc.preferences.colorSupport": false,
-    "tailwindCSS.emmetCompletions": true
+    "tailwindCSS.emmetCompletions": true,
+    "xml.java.home": "/usr/lib/jvm/java-11-openjdk-amd64/"
 }
