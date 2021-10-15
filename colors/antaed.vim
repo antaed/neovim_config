@@ -19,10 +19,10 @@ let s:indig = "6C76D5" " #6C76D5
 let s:purpl = "9E6CEA" " #9E6CEA
 let s:magen = "DC184D" " #DC184D
 let s:pink0 = "FF3369" " #FF3369
-let s:diffa = "112711" " #D1F0E7
+let s:diffa = "112711" " #112711
 let s:difft = "0F3357" " #0F3357
 let s:diffc = "112132" " #112132
-let s:diffd = "291629" " #F0E4E7
+let s:diffd = "291629" " #291629
 
 " Theme setup
 hi clear
@@ -68,6 +68,7 @@ call <sid>hi("FoldColumn"   , s:neutr , s:dark1 , "NONE")
 call <sid>hi("CursorLineNr" , s:lite1 , s:dark1 , "NONE")
 call <sid>hi("SignColumn"   , s:neutr , s:dark1 , "NONE")
 call <sid>hi("Search"       , s:pink0 , s:dark1 , "NONE")
+call <sid>hi("Repeat"       , s:pink0 , s:dark1 , "NONE")
 call <sid>hi("QuickFixLine" , s:white , s:dark2 , "NONE")
 call <sid>hi("TabLineFill"  , s:black , s:lite1 , "NONE")
 call <sid>hi("StatusLine"       , s:lite1 , s:black , "NONE")
@@ -393,6 +394,16 @@ call <sid>hi("CocHintHighlight"      , ""      , "" , "undercurl")
 call <sid>hi("Floaterm"       , ""      , s:black , "NONE")
 call <sid>hi("FloatermNC"     , ""      , s:black , "NONE")
 call <sid>hi("FloatermBorder" , s:black , s:black , "NONE")
+
+" Vdebug
+call <sid>hi("DbgCurrentLine"               , ""      , s:diffd , "NONE")
+call <sid>hi("DbgCurrentSign"               , s:diffd , s:diffd , "NONE")
+call <sid>hi("DbgBreakptLine"               , ""      , s:diffa , "NONE")
+call <sid>hi("DbgBreakptSign"               , s:diffa , s:diffa , "NONE")
+call <sid>hi("DbgDisabledLine"              , s:dark3 , s:dark1 , "NONE")
+call <sid>hi("DbgDisabledSign"              , s:dark3 , s:dark1 , "NONE")
+call <sid>hi("DbgCurrentStackPositionLine"  , s:white , s:dark2 , "NONE")
+call <sid>hi("DbgCurrentStackPositionSign"  , s:white , s:dark2 , "NONE")
 
 " Remove functions
 delf <sid>hi

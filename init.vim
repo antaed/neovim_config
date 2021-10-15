@@ -5,7 +5,7 @@ let g:python3_host_prog = '/usr/bin/python3.8'
 set mouse=a
 set clipboard=unnamedplus
 set undofile
-set tabstop=8 softtabstop=4 shiftwidth=4 expandtab breakindent autoindent
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab breakindent autoindent
 set laststatus=2 noshowmode " Because lightline won't show up without this | Not necessary if powerline is installed
 set relativenumber number
 set ignorecase smartcase

@@ -157,3 +157,137 @@ function! GetMappings()
     let lines=split(lines,'\n')
     return lines
 endfunction
+
+
+" Find repeated matches
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfunction
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+" regex alternative
+" :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch
+
+
+" Find next/prev case in switch statement
+function! CaseJump(direction)
+    let switchStart = 0
+    let switchEnd = 0
+    let cursorInit = 0
+    let restore_cursor = ""
+
+    " set cursor to beginning of line
+    exe "normal! 0"
+
+    " get/set initial cursor line
+    let cursorInit = line(".")
+    let restore_cursor = "normal!" . cursorInit . "G" . virtcol(".") . "|"
+
+    " search switch backwards, exit if not found
+    if search('\<switch\_s*(','bW') == 0 | return | endif
+
+    " set switch start line
+    let switchStart = line(".")
+
+    " identify switch type
+    exe "normal! w%e"
+    let switchType = getline('.')[col('.') - 1]
+
+    " find/validate switch end
+    let continue = 0
+    if switchType == '{'
+        execute "normal! %"
+        if line(".") != switchStart | let continue = 1 | endif
+    elseif switchType == ':'
+        if search('\<endswitch','W') != 0 | let continue = 1 | endif
+    endif
+
+    " set switch end
+    let switchEnd = line('.')
+
+    " restore cursor to starting point
+    exe restore_cursor
+
+    " search for the next case
+    if continue | exe "call FindNextCase(cursorInit, switchStart, switchEnd, a:direction)" | endif
+
+endfunction
+
+function! FindSwitchEnd(switchStart)
+    " identify switch type
+    exe "normal! w%e"
+    let switchType = getline('.')[col('.') - 1]
+
+    if switchType == '{'
+        execute "normal! %"
+        return line(".") == switchStart ? 0 : line(".")
+    elseif switchType == ':'
+        if search('\<endswitch','W') != 0 | let continue = 1 | endif
+        return 'to do'
+    else 
+        return 0
+    endif
+
+endfunction
+
+function! GetMatches(pattern)
+  let l:matches = []
+  silent exe '%s/' . a:pattern . '/\=add(l:matches, submatch(0))/gn'
+  echo l:matches
+  return l:matches
+endfunction
+
+function! FindNextCase(lastCaseLine, switchStart, switchEnd, direction)
+    " set restore point
+    let restore_cursor = "normal!" . a:lastCaseLine . "G" . virtcol(".") . "|"
+
+    " reset cursor and exit if case not found
+    if (search('^\s*\(\<case\>\|\<default\>\)','w'.a:direction) == 0)
+        exe restore_cursor
+        return 
+    endif
+
+    " set case cursor line
+    let nextCaseLine = line(".")
+
+    " reset cursor and exit if case is out of current switch or on last line
+    if (nextCaseLine < a:switchStart || nextCaseLine > a:switchEnd || nextCaseLine == a:lastCaseLine) 
+        exe restore_cursor
+        return 
+    endif
+
+    " SUCCESS
+    " put cursorin place and exit if it's in the same switch 
+    if search('\<switch\_s*(','bW') == a:switchStart 
+        exe "normal!" . nextCaseLine . "G" . virtcol(".") . "|"
+        return
+    endif
+
+    " CASE IS IN ANOTHER SWITCH
+    " identify switch type
+    exe "normal! w%e"
+    let switchType = getline('.')[col('.') - 1]
+    " go to switch end
+    if switchType == '{'
+        execute "normal! %"
+    elseif switchType == ':'
+        let s = search('\<endswitch','W')
+    endif
+
+    exe "call FindNextCase(nextCaseLine, a:switchStart, a:switchEnd, a:direction)"
+endfunction
+
+

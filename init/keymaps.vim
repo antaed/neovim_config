@@ -195,13 +195,14 @@ nnoremap <expr> dj &diff ? ']c' : ''
 nnoremap <expr> dk &diff ? '[c' : ''
 
 " Terminal mappings
-tnoremap <esc> <C-w>N
-tnoremap <F3> <C-w><C-c>
-nnoremap <F3> i<C-w><C-c>
+" tnoremap <esc> <C-w>N
+tnoremap <esc> <C-\><C-n>:q!<CR>
+tnoremap <leader><F4> <C-w><C-c>
+nnoremap <leader><F4> i<C-w><C-c>
 
 " Jump to next error
-nmap <silent> <F4> <Plug>(coc-diagnostic-next-error)
-nmap <silent> <F16> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader><F3> <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader><F2> <Plug>(coc-diagnostic-prev-error)
 
 " Go To
 nmap <silent> gd <Plug>(coc-definition)
@@ -212,17 +213,17 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gh :call CocActionAsync('doHover')<cr>
 
 " Compare current buffer against the file
-nnoremap <silent> <expr> <F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
+nnoremap <silent> <expr> <leader><F5> &diff ? ':windo diffoff:bd' : ":DiffSaved\<CR>"
 
 " HL on double click
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>' <bar> :set hls<cr>
 
 " FZF word under cursor
-nmap <silent><F7> :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
-vmap <silent><F7> y:call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+nmap <silent><leader><F7> :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+vmap <silent><leader><F7> y:call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 
 " Switch projects
-nnoremap <F2> :Cd<CR>
+nnoremap <leader><CR> :Cd<CR>
 nnoremap <F14> :Ftp<CR>
 
 " Get PHP Variables
@@ -230,10 +231,10 @@ nnoremap <leader>pv /\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"
 vnoremap <leader>pv <esc>/\%V\$\w\+<CR>:CopyMatches<CR>:vnew<CR>:vertical resize 80<CR>"+p:sort u<CR>:nohl<CR>dd
 
 " Activate Goyo
-nnoremap <silent> <expr> <F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
+nnoremap <silent> <expr> <leader><F6> exists('#goyo') ? ":Goyo!\<cr>" : ":packadd goyo.vim \<bar> :Goyo\<cr>"
 
 " Toggle colorscheme
-nnoremap <silent> <expr> <F10> exists('#goyo') ? ":call ToggleColorscheme()\<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()\<CR>"
+nnoremap <silent> <expr> <leader><F10> exists('#goyo') ? ":call ToggleColorscheme()\<CR>:packadd goyo.vim \<bar> :Goyo\<cr>" :  ":call ToggleColorscheme()\<CR>"
 
 " FZF mappings
 nnoremap <silent> <C-f> :call fzf#vim#files('.', {'options': '--prompt ""'})<CR>
@@ -249,9 +250,15 @@ tnoremap <Esc> <C-\><C-n>
 noremap <C-p> <C-^>
 
 " Floaterm
-nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-
+nnoremap <silent> <leader><F12> :FloatermToggle<CR>
+tnoremap <silent> <leader><F12> <C-\><C-n>:FloatermToggle<CR>
 
 " Fern file manager
-nmap <silent> <F8> :Fern . -drawer -toggle<CR>
+nmap <silent> <leader><F8> :Fern . -drawer -toggle<CR>
+
+" Highlight duplicate lines
+nnoremap <silent> <expr> <leader>d ":syn clear Repeat <bar> g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat \"^' . escape(getline('.'), '\".\^$*[]') . '$\"' <bar> nohlsearch <bar> hi link Repeat Search<CR>"
+
+" case break jump remaps
+noremap <silent> ]s :call CaseJump('')<CR>
+noremap <silent> [s :call CaseJump('b')<CR>

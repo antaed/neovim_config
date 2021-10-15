@@ -31,6 +31,8 @@ Plug 'jwalton512/vim-blade'
 Plug 'gerw/vim-HiLinkTrace'
 Plug 'lambdalisue/fern.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'AndrewRadev/linediff.vim'
+Plug 'vim-vdebug/vdebug'
 call plug#end()
 
 
@@ -202,3 +204,16 @@ let g:sandwich#recipes += [
 
 " fixcursorhold config
 let g:cursorhold_updatetime = 100
+
+" vdebug config
+let g:vdebug_options = { 
+    \ 'path_maps' : { 'C:\xampp\htdocs': '/mnt/c/xampp/htdocs' }, 
+    \ 'break_on_open' : 0,
+    \ 'debug_file' : '/mnt/c/vdebug/vdebug.log',
+    \ 'debug_file_level' : 2,
+    \ 'sign_breakpoint' : '>',
+    \ 'sign_current' : '>>'
+    \ }
+let g:vdebug_keymap = {
+    \ "eval_visual" : "<F8>"
+    \ }

@@ -68,6 +68,7 @@ call <sid>hi("FoldColumn"   , s:neutr , s:lite1 , "NONE")
 call <sid>hi("CursorLineNr" , s:dark1 , s:lite1 , "NONE")
 call <sid>hi("SignColumn"   , s:neutr , s:lite1 , "NONE")
 call <sid>hi("Search"       , s:black , s:fluor , "NONE")
+call <sid>hi("Repeat"       , s:black , s:fluor , "NONE")
 call <sid>hi("QuickFixLine" , s:black , s:lite2 , "NONE")
 call <sid>hi("TabLineFill"  , s:white , s:dark1 , "NONE")
 call <sid>hi("StatusLine"       , s:dark1 , s:white , "NONE")
@@ -393,6 +394,16 @@ call <sid>hi("CocHintHighlight"      , ""      , "" , "undercurl")
 call <sid>hi("Floaterm"       , s:black , s:white , "NONE")
 call <sid>hi("FloatermNC"     , s:black , s:white , "NONE")
 call <sid>hi("FloatermBorder" , s:white , s:white , "NONE")
+
+" Vdebug
+call <sid>hi("DbgCurrentLine"               , ""      , s:diffd , "NONE")
+call <sid>hi("DbgCurrentSign"               , s:diffd , s:diffd , "NONE")
+call <sid>hi("DbgBreakptLine"               , ""      , s:diffa , "NONE")
+call <sid>hi("DbgBreakptSign"               , s:diffa , s:diffa , "NONE")
+call <sid>hi("DbgDisabledLine"              , s:lite3 , s:lite1 , "NONE")
+call <sid>hi("DbgDisabledSign"              , s:lite3 , s:lite1 , "NONE")
+call <sid>hi("DbgCurrentStackPositionLine"  , s:black , s:lite2 , "NONE")
+call <sid>hi("DbgCurrentStackPositionSign"  , s:black , s:lite2 , "NONE")
 
 " Remove functions
 delf <sid>hi
